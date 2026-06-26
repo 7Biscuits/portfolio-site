@@ -32,7 +32,7 @@ export const PROJECTS: Project[] = [
   {
     title: "Mini-ICU",
     category: "IoT & Healthcare",
-    tagline: "Economical portable medical ventilator with real-time vitals monitoring",
+    tagline: "An Economical Miniaturized Intensive Care Unit System along with a remote vital-monitoring system.",
     stack: ["NodeMCU", "IoT", "C++", "Express.js", "MongoDB", "Expo", "REST APIs"],
     githubUrl: "https://github.com/7Biscuits/Mini-ICU/",
   },
@@ -78,14 +78,14 @@ export const TIMELINE: TimelineEntry[] = [
   },
   {
     role: "Head Boy",
-    org: "Student Council",
+    org: "Student Council, SBS BGN",
     period: "Jun 2023 – Mar 2024",
     type: "leadership",
-    description: "Represented the student body of over 3,000 pupils, coordinated major school events, and served as liaison between administration and students.",
+    description: "Represented the student body of over 3,000 students, coordinated major school events, and served as intermediary between administration and students.",
   },
   {
     role: "Project Evaluator & Executive Intern",
-    org: "Youth Ideathon",
+    org: "ThinkStartup, Youth Ideathon",
     period: "Aug 2023 – Nov 2024",
     type: "professional",
     description: "Evaluated high school startup pitches across India, managed community outreach, and coordinated regional bootcamps.",
@@ -94,7 +94,7 @@ export const TIMELINE: TimelineEntry[] = [
   {
     role: "Full-Stack Web Dev Intern",
     org: "Luzeblaze",
-    period: "Dec 2023 – Feb 2024",
+    period: "Dec 2023 - Feb 2024",
     type: "professional",
     description: "Developed production web features, optimized REST APIs, and received the Best Intern Award out of a cohort of 200+ interns.",
     badge: "Best Intern Award",
@@ -105,27 +105,52 @@ export const AWARDS: Award[] = [
   {
     badge: "Winner",
     title: "Inspire Awards MANAK",
-    context: "Selected for national honors from over 10 Lakh+ nominations across India for outstanding tech innovation.",
+    context: "Intel & DST, India. Selected for national honors from over 10 Lakh+ nominations across India for outstanding tech innovation.",
   },
   {
     badge: "Winner",
-    title: "Think Startup Youth Ideathon",
-    context: "Held at IIT Delhi. Placed in the top 10 nationwide out of 90,000+ entries.",
+    title: "Think Startup Youth Ideathon 2022",
+    context: "Held at IIT Delhi. Selected among 90,000+ participants.",
+  },
+  {
+    badge: "Runner-Up",
+    title: "Unfold 2023",
+    context: "OKTO track - CoinDCX multi-chain Hackathon @ KTPO Bangalore with 1,000+ participants.",
   },
   {
     badge: "Winner",
     title: "HACK JKLU",
-    context: "Championed the hackathon challenges. Also finished as Runner-Up in the CoinDCX Unfold 2023 Hackathon.",
+    context: "Hackathon @ JK Lakshmipat University with 1,000+ participants.",
+  },
+  {
+    badge: "3rd Place",
+    title: "TCL B-Plan Competition",
+    context: "Think Startup @ Prometheus School out of 3,500+ participants.",
   },
   {
     badge: "Winner",
-    title: "ATL Marathon",
-    context: "Ranked in the top 500 out of more than 20,000+ national entries for innovative solution prototype.",
+    title: "ATL Marathon 2023-24",
+    context: "Niti Aayog, GoI. Placed in the top 500 out of over 20,000 entries.",
+  },
+  {
+    badge: "Finalist",
+    title: "Vivo Ignite 2023",
+    context: "Top 200 Teams out of 19,000+ teams.",
   },
   {
     badge: "Winner",
     title: "Innovate4Impact Smart City Challenge",
-    context: "Organized by La Trobe University, Australia. Awarded for developing smart urban carbon monitoring models.",
+    context: "La Trobe University, Australia. Awarded for developing smart urban carbon monitoring and emission control.",
+  },
+  {
+    badge: "1st Place",
+    title: "Teenovations",
+    context: "Robotics model making with computer scraps @ COFAS, CMS Lucknow.",
+  },
+  {
+    badge: "Best Intern",
+    title: "Best Intern Award by Luneblaze",
+    context: "Surpassed over 200 interns in full-stack web development.",
   }
 ];
 

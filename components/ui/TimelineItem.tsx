@@ -1,5 +1,3 @@
-import { ExternalLink } from "lucide-react";
-
 interface TimelineItemProps {
   role: string;
   org: string;
@@ -7,7 +5,6 @@ interface TimelineItemProps {
   type: "professional" | "leadership";
   description: string;
   badge?: string;
-  orgUrl?: string; // Optional URL for organization link
 }
 
 export default function TimelineItem({
@@ -17,7 +14,6 @@ export default function TimelineItem({
   type,
   description,
   badge,
-  orgUrl = "#",
 }: TimelineItemProps) {
   return (
     <div className="p-6 md:p-8 flex flex-col md:flex-row gap-6 items-start relative group transition-colors duration-150 hover:bg-[var(--accent)]/5">
@@ -48,19 +44,6 @@ export default function TimelineItem({
         <p className="text-sm text-[var(--text-muted)] leading-relaxed max-w-3xl">
           {description}
         </p>
-      </div>
-
-      {/* Boxed external link action */}
-      <div className="self-start md:self-auto flex-shrink-0 flex items-center md:justify-end">
-        <a
-          href={orgUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="p-2 border-2 border-black dark:border-white bg-[var(--card)] text-[var(--text-primary)] shadow-neo-sm hover-brutal transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brutal-coral"
-          aria-label={`Visit ${org} website`}
-        >
-          <ExternalLink className="w-4 h-4" />
-        </a>
       </div>
     </div>
   );

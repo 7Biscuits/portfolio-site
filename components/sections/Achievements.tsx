@@ -1,9 +1,14 @@
+"use client";
+
+import { useState } from "react";
 import { AWARDS } from "@/lib/data";
 import MetricBadge from "../ui/MetricBadge";
-import { FileText, ExternalLink } from "lucide-react";
+import { FileText, ExternalLink, ChevronDown, ChevronUp } from "lucide-react";
 import ScrollReveal from "../ui/ScrollReveal";
 
 export default function Achievements() {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   return (
     <section id="achievements" className="py-20 border-t-4 border-black dark:border-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -21,12 +26,12 @@ export default function Achievements() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
           {/* Left Column: Awards List with Staggered ScrollReveal */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-7 space-y-6 text-left">
             <h4 className="font-mono text-xs font-black tracking-widest text-brutal-coral uppercase mb-4">
               // elite recognition &amp; honors
             </h4>
             <div className="space-y-5">
-              {AWARDS.map((award, index) => (
+              {(isExpanded ? AWARDS : AWARDS.slice(0, 3)).map((award, index) => (
                 <ScrollReveal key={`award-wrapper-${index}`} delay={index * 100}>
                   <div
                     className="bg-[var(--card)] border-2 border-black dark:border-white p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-neo hover-brutal transition-all duration-150"
@@ -46,11 +51,30 @@ export default function Achievements() {
                 </ScrollReveal>
               ))}
             </div>
+
+            {AWARDS.length > 3 && (
+              <div className="flex justify-start pt-2">
+                <button
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  className="font-mono text-xs font-bold tracking-widest uppercase bg-[var(--card)] text-[var(--text-primary)] border-2 border-black dark:border-white px-6 py-3.5 shadow-neo hover-brutal flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brutal-coral transition-all duration-150"
+                >
+                  {isExpanded ? (
+                    <>
+                      Show Less <ChevronUp className="w-4 h-4" />
+                    </>
+                  ) : (
+                    <>
+                      Read More <ChevronDown className="w-4 h-4" />
+                    </>
+                  )}
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Right Column: Research Publications wrapped in ScrollReveal */}
           <div className="lg:col-span-5 space-y-6">
-            <h4 className="font-mono text-xs font-black tracking-widest text-brutal-coral uppercase mb-4">
+            <h4 className="font-mono text-xs font-black tracking-widest text-brutal-coral uppercase mb-4 text-left">
               // academic publications
             </h4>
             

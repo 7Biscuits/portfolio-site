@@ -27,7 +27,8 @@ export default function About() {
                   An aspiring AI/software engineer focused on full-stack development, system design, and applied ML. Incoming CSE freshman looking for opportunities to work on something cool and innovative.
                 </p>
                 <p className="text-sm text-[var(--text-muted)] leading-relaxed">
-                  My engineering-hacker approach drives me to build hardware-software integrations that bridge the physical and digital worlds. From configuring embedded controllers and training computer vision sensors to writing scalable server backends, I enjoy orchestrating all layers of modern product development.
+                  I enjoy building systems that connect the physical and digital worlds. Whether it's programming embedded controllers, integrating computer vision, or developing scalable backend services, I like working across the entire technology stack to turn ideas into reliable, real-world products.
+
                 </p>
               </div>
             </ScrollReveal>

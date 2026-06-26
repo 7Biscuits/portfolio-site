@@ -57,9 +57,11 @@ export default function Hero() {
               {/* Massive Brutalist Header */}
               <h1 className="text-5xl sm:text-7xl font-black uppercase tracking-tighter text-[var(--text-primary)] leading-[0.9] select-none space-y-1">
                 <span className="block">
-                  RUDRANSH<span className="text-brutal-coral font-black">*</span>
+                  RUDRANSH
                 </span>
-                <span className="block">SRIVASTAVA</span>
+                <span className="block">
+                  SRIVASTAVA<span className="text-brutal-coral font-black">;</span>
+                </span>
               </h1>
             </div>
 
@@ -71,7 +73,7 @@ export default function Hero() {
                 </span>
               </div>
               <p className="font-mono text-sm tracking-wide text-[var(--text-muted)] max-w-2xl leading-relaxed">
-                Specializing in building hardware-software integrations, applied machine learning systems, and high-performance server backends.
+                Specializing in building hardware-software integrations, applied machine learning systems, and high-performance backend servers.
               </p>
             </div>
 
@@ -132,7 +134,7 @@ export default function Hero() {
           {/* Right Column: Layered Polaroid Picture Frame */}
           <div className="lg:col-span-5 flex justify-center">
             {/* Tilted picture frame wrappers */}
-            <div className="relative w-80 h-[370px] sm:w-[360px] sm:h-[420px]">
+            <div className="relative w-full max-w-[320px] h-[370px] sm:max-w-[400px] sm:h-[460px]">
               
               {/* Back Layer 1: Cyan Sheet */}
               <div className="absolute inset-0 border-2 border-black dark:border-white bg-brutal-cyan translate-x-[-12px] translate-y-[8px] rotate-[-3deg] pointer-events-none" />
@@ -147,7 +149,7 @@ export default function Hero() {
               <div className="absolute inset-0 border-2 border-black bg-white text-black p-4 pb-14 shadow-neo flex flex-col justify-between rotate-[1.5deg] hover:rotate-0 hover:scale-105 hover:shadow-neo-lg transition-all duration-300 select-none">
                 
                 {/* Image panel: developer avatar (full color) */}
-                <div className="relative w-full h-[260px] sm:h-[310px] bg-[#EBEBEB] border-2 border-black flex flex-col items-center justify-center overflow-hidden">
+                <div className="relative w-full h-[260px] sm:h-[340px] bg-[#EBEBEB] border-2 border-black flex flex-col items-center justify-center overflow-hidden">
                   <img
                     src="/avatar.jpeg"
                     alt="Rudransh Srivastava"
