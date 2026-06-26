@@ -45,7 +45,7 @@ export default function Achievements() {
                       </p>
                     </div>
                     <div className="flex-shrink-0 self-start sm:self-auto">
-                      <MetricBadge label={award.badge} variant={index % 2 === 0 ? "coral" : "cyan"} />
+                      <MetricBadge label={award.badge} variant={award.badge == "Winner" ? "cyan" : "coral"} />
                     </div>
                   </div>
                 </ScrollReveal>
@@ -91,7 +91,7 @@ export default function Achievements() {
                     Mini-Vent - An Economical Miniaturized Intensive Care Unit System
                   </h5>
                   <p className="text-sm text-[var(--text-muted)] leading-relaxed">
-                    Published in the <span className="font-bold text-[var(--text-primary)]">International Research Journal of Engineering and Technology (IRJET)</span>. The paper describes the software algorithms, IoT alert nodes, and pressure sensor system configurations built for economical healthcare environments.
+                    Published in the <span className="font-bold text-[var(--text-primary)]">International Research Journal of Engineering and Technology (IRJET)</span>. The paper explores how our intuitive, easy-to-use system and remote monitoring system addresses the urgent need for accessible respiratory support in overwhelmed healthcare facilities. We discuss the design process, implementation challenges and the potential impact of this technology in improving patient outcomes during global health crises.
                   </p>
                 </div>
 

@@ -118,7 +118,12 @@ export const AWARDS: Award[] = [
     context: "OKTO track - CoinDCX multi-chain Hackathon @ KTPO Bangalore with 1,000+ participants.",
   },
   {
-    badge: "Winner",
+    badge: "Runner-Up",
+    title: "MoE IC IIC Regional Meet 2023",
+    context: "Ministry of Education's Innovation Cell, GOI | IIC | AICTE | BHU (Feb 2024). Awarded Runners-up at the regional meet in Varanasi; project secured multiple incubation offers from investors.",
+  },
+  {
+    badge: "Runner-up",
     title: "HACK JKLU",
     context: "Hackathon @ JK Lakshmipat University with 1,000+ participants.",
   },
@@ -143,12 +148,12 @@ export const AWARDS: Award[] = [
     context: "La Trobe University, Australia. Awarded for developing smart urban carbon monitoring and emission control.",
   },
   {
-    badge: "1st Place",
+    badge: "Winner",
     title: "Teenovations",
-    context: "Robotics model making with computer scraps @ COFAS, CMS Lucknow.",
+    context: "1st place in Robotics model making with computer scraps @ COFAS, CMS Lucknow.",
   },
   {
-    badge: "Best Intern",
+    badge: "Winner",
     title: "Best Intern Award by Luneblaze",
     context: "Surpassed over 200 interns in full-stack web development.",
   }
