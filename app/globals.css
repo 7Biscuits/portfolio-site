@@ -3,26 +3,26 @@
 @tailwind utilities;
 
 :root {
-  --accent: #FF6B6B; /* Main accent is Coral */
-  --accent-secondary: #38BDF8; /* Cyan */
-  --accent-tertiary: #FDE047; /* Yellow */
-  --canvas: #F7F6F0; /* Retro Cream */
+  --accent: #18181B; /* Zinc 900 */
+  --accent-secondary: #27272A; /* Zinc 800 */
+  --accent-tertiary: #3F3F46; /* Zinc 700 */
+  --canvas: #FAFAFA; /* Zinc 50 */
   --card: #FFFFFF;
-  --border: #000000;
-  --text-primary: #000000;
-  --text-muted: #2D3748;
+  --border: #E4E4E7; /* Zinc 200 */
+  --text-primary: #09090B; /* Zinc 950 */
+  --text-muted: #71717A; /* Zinc 500 */
   color-scheme: light;
 }
 
 .dark {
-  --accent: #FF6B6B;
-  --accent-secondary: #00F2FE;
-  --accent-tertiary: #FDE047;
-  --canvas: #0B0F19;
-  --card: #161B26;
-  --border: #FFFFFF;
-  --text-primary: #F3F4F6;
-  --text-muted: #9CA3AF;
+  --accent: #FAFAFA; /* Zinc 50 */
+  --accent-secondary: #E4E4E7; /* Zinc 200 */
+  --accent-tertiary: #D4D4D8; /* Zinc 300 */
+  --canvas: #09090B; /* Zinc 950 */
+  --card: #18181B; /* Zinc 900 */
+  --border: #27272A; /* Zinc 800 */
+  --text-primary: #FAFAFA; /* Zinc 50 */
+  --text-muted: #A1A1AA; /* Zinc 400 */
   color-scheme: dark;
 }
 
@@ -87,23 +87,23 @@ html {
 
 @layer utilities {
   .shadow-neo {
-    box-shadow: 4px 4px 0px 0px var(--border);
+    box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
   }
   .shadow-neo-lg {
-    box-shadow: 8px 8px 0px 0px var(--border);
+    box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.04);
   }
   .shadow-neo-sm {
-    box-shadow: 2px 2px 0px 0px var(--border);
+    box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.04);
   }
   .hover-brutal {
-    transition: all 150ms cubic-bezier(0, 0, 0.2, 1);
+    transition: all 250ms cubic-bezier(0.16, 1, 0.3, 1);
   }
   .hover-brutal:hover {
-    transform: translate(-4px, -4px);
-    box-shadow: 8px 8px 0px 0px var(--border);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.08), 0 4px 8px -2px rgba(0, 0, 0, 0.04);
   }
   .hover-brutal:active {
-    transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0px 0px var(--border);
+    transform: translateY(0);
+    box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.04);
   }
 }

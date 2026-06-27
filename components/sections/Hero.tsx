@@ -1,8 +1,8 @@
 "use client";
 
-import { Mail, ArrowRight, Github, Linkedin, ExternalLink, FileText } from "lucide-react";
+import { Mail, ArrowRight, Github, Linkedin, FileText } from "lucide-react";
 import ScrollMarquee from "../ui/ScrollMarquee";
-import { GITHUB_USERNAME, LINKEDIN_URL, EMAIL_ADDRESS, MARQUEE_ITEMS, RESUME_PATH } from "@/lib/data";
+import { GITHUB_USERNAME, LINKEDIN_URL, RESUME_PATH, MARQUEE_ITEMS } from "@/lib/data";
 
 export default function Hero() {
   const handleScrollToProjects = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
@@ -49,26 +49,26 @@ export default function Hero() {
           {/* Left Column: Bold Copy Content */}
           <div className="lg:col-span-7 flex flex-col space-y-6 text-left">
             <div>
-              {/* Boxed Coral Header tag */}
-              <span className="inline-block font-mono text-2xl font-bold bg-border-dark text-black border-2 border-black dark:border-white px-3 py-1 shadow-neo-sm uppercase mb-6 select-none">
-                Hi, I am
+              {/* Refined clean tagline */}
+              <span className="inline-block font-mono text-sm font-semibold tracking-widest text-neutral-600 dark:text-neutral-300 uppercase mb-4 select-none">
+                HI, I AM
               </span>
 
-              {/* Massive Brutalist Header */}
+              {/* Massive Modern Header */}
               <h1 className="text-5xl sm:text-7xl font-black uppercase tracking-tighter text-[var(--text-primary)] leading-[0.9] select-none space-y-1">
                 <span className="block">
                   RUDRANSH
                 </span>
                 <span className="block">
-                  SRIVASTAVA<span className="text-brutal-coral font-black">;</span>
+                  SRIVASTAVA<span className="text-neutral-400 font-black">;</span>
                 </span>
               </h1>
             </div>
 
             {/* Subheadline marker */}
             <div className="space-y-4">
-              <div className="flex items-center gap-3 border-l-4 border-black dark:border-white pl-4 py-1">
-                <span className="font-mono text-sm sm:text-base font-extrabold tracking-widest text-[var(--text-primary)] uppercase select-none">
+              <div className="flex items-center gap-3 border-l-2 border-neutral-300 dark:border-neutral-700 pl-4 py-1">
+                <span className="font-mono text-sm sm:text-base font-bold tracking-widest text-[var(--text-primary)] uppercase select-none">
                   // FULL-STACK DEVELOPER &amp; IOT ENGINEER
                 </span>
               </div>
@@ -82,7 +82,7 @@ export default function Hero() {
               <a
                 href="#projects"
                 onClick={handleScrollToProjects}
-                className="font-mono text-xs font-bold tracking-widest uppercase bg-black text-white dark:bg-white dark:text-black border-2 border-black dark:border-white px-6 py-3.5 shadow-neo hover-brutal flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brutal-cyan transition-all duration-150"
+                className="font-mono text-xs font-bold tracking-widest uppercase bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-100 px-6 py-3.5 rounded-md flex items-center gap-2 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-400"
               >
                 View Projects
                 <ArrowRight className="w-4 h-4" />
@@ -91,7 +91,7 @@ export default function Hero() {
               <a
                 href="#contact"
                 onClick={handleScrollToContact}
-                className="font-mono text-xs font-bold tracking-widest uppercase bg-[var(--card)] text-[var(--text-primary)] border-2 border-black dark:border-white px-6 py-3.5 shadow-neo hover-brutal flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brutal-coral transition-all duration-150"
+                className="font-mono text-xs font-bold tracking-widest uppercase border border-[var(--border)] bg-[var(--card)] text-[var(--text-primary)] hover:bg-neutral-50 dark:hover:bg-neutral-900 px-6 py-3.5 rounded-md flex items-center gap-2 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-400"
               >
                 <Mail className="w-4 h-4" />
                 Contact Me
@@ -101,7 +101,7 @@ export default function Hero() {
                 href={RESUME_PATH}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-mono text-xs font-bold tracking-widest uppercase bg-[var(--card)] text-[var(--text-primary)] border-2 border-black dark:border-white px-6 py-3.5 shadow-neo hover-brutal flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brutal-yellow transition-all duration-150"
+                className="font-mono text-xs font-bold tracking-widest uppercase border border-[var(--border)] bg-[var(--card)] text-[var(--text-primary)] hover:bg-neutral-50 dark:hover:bg-neutral-900 px-6 py-3.5 rounded-md flex items-center gap-2 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-400"
               >
                 <FileText className="w-4 h-4" />
                 Resume
@@ -113,7 +113,7 @@ export default function Hero() {
                   href={`https://github.com/${GITHUB_USERNAME}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 border-2 border-black dark:border-white bg-[var(--card)] text-[var(--text-primary)] shadow-neo hover-brutal transition-all duration-150"
+                  className="p-3 border border-[var(--border)] bg-[var(--card)] text-neutral-500 hover:text-[var(--text-primary)] hover:bg-neutral-50 dark:hover:bg-neutral-900 rounded-md transition-colors duration-150"
                   aria-label="GitHub Profile"
                 >
                   <Github className="w-4 h-4" />
@@ -122,7 +122,7 @@ export default function Hero() {
                   href={LINKEDIN_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 border-2 border-black dark:border-white bg-[var(--card)] text-[var(--text-primary)] shadow-neo hover-brutal transition-all duration-150"
+                  className="p-3 border border-[var(--border)] bg-[var(--card)] text-neutral-500 hover:text-[var(--text-primary)] hover:bg-neutral-50 dark:hover:bg-neutral-900 rounded-md transition-colors duration-150"
                   aria-label="LinkedIn Profile"
                 >
                   <Linkedin className="w-4 h-4" />
@@ -131,45 +131,31 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right Column: Layered Polaroid Picture Frame */}
+          {/* Right Column: Clean Premium Portrait Card */}
           <div className="lg:col-span-5 flex justify-center">
-            {/* Tilted picture frame wrappers */}
-            <div className="relative w-full max-w-[320px] h-[370px] sm:max-w-[400px] sm:h-[460px]">
+            <div className="relative w-full max-w-[320px] h-[370px] sm:max-w-[380px] sm:h-[435px] border border-[var(--border)] bg-[var(--card)] p-4 rounded-xl shadow-lg flex flex-col justify-between hover:scale-[1.01] hover:shadow-xl transition-all duration-300 select-none">
               
-              {/* Back Layer 1: Cyan Sheet */}
-              <div className="absolute inset-0 border-2 border-black dark:border-white bg-brutal-cyan translate-x-[-12px] translate-y-[8px] rotate-[-3deg] pointer-events-none" />
-              
-              {/* Back Layer 2: Yellow Sheet */}
-              <div className="absolute inset-0 border-2 border-black dark:border-white bg-brutal-yellow translate-x-[8px] translate-y-[-10px] rotate-[3deg] pointer-events-none" />
-
-              {/* Back Layer 3: Coral Sheet */}
-              <div className="absolute inset-0 border-2 border-black dark:border-white bg-brutal-coral translate-x-[-4px] translate-y-[-4px] rotate-[-1deg] pointer-events-none" />
-
-              {/* Front Main Polaroid Frame: Pure white card (black borders always) */}
-              <div className="absolute inset-0 border-2 border-black bg-white text-black p-4 pb-14 shadow-neo flex flex-col justify-between rotate-[1.5deg] hover:rotate-0 hover:scale-105 hover:shadow-neo-lg transition-all duration-300 select-none">
+              {/* Image panel: developer avatar (full color) */}
+              <div className="relative w-full h-[280px] sm:h-[340px] bg-neutral-100 dark:bg-neutral-900 rounded-lg overflow-hidden border border-[var(--border)] flex flex-col items-center justify-center">
+                <img
+                  src="/avatar.jpeg"
+                  alt="Rudransh Srivastava"
+                  className="w-full h-full object-cover"
+                />
                 
-                {/* Image panel: developer avatar (full color) */}
-                <div className="relative w-full h-[260px] sm:h-[340px] bg-[#EBEBEB] border-2 border-black flex flex-col items-center justify-center overflow-hidden">
-                  <img
-                    src="/avatar.jpeg"
-                    alt="Rudransh Srivastava"
-                    className="w-full h-full object-cover"
-                  />
-                  
-                  <div className="absolute top-3 left-3 bg-black text-white px-2 py-0.5 font-mono text-[9px] uppercase font-bold tracking-wider">
-                    7Biscuits // dev
-                  </div>
-
-                  {/* Tech grid overlay */}
-                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-transparent to-black/5 pointer-events-none" />
+                <div className="absolute top-3 left-3 bg-black/75 backdrop-blur-sm text-white px-2.5 py-0.5 font-mono text-[9px] uppercase font-bold tracking-wider rounded">
+                  7Biscuits // dev
                 </div>
 
-                {/* Hand-written / Monospace signature caption */}
-                <div className="text-center pt-3">
-                  <span className="font-mono text-[10px] font-black tracking-[0.25em] text-neutral-800 uppercase block">
-                    RUDRANSH // IMG.2026
-                  </span>
-                </div>
+                {/* Tech grid overlay */}
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-transparent to-black/5 pointer-events-none" />
+              </div>
+
+              {/* Monospace signature caption */}
+              <div className="text-center pt-2">
+                <span className="font-mono text-[10px] font-bold tracking-[0.25em] text-neutral-600 dark:text-neutral-300 uppercase block">
+                  RUDRANSH // IMG.2026
+                </span>
               </div>
 
             </div>

@@ -21,10 +21,10 @@ export default function ProjectCard({
   const primaryUrl = demoUrl || githubUrl;
 
   return (
-    <div className="relative group bg-[var(--card)] border-2 border-black dark:border-white p-5 flex flex-col justify-between h-full shadow-neo hover-brutal transition-all duration-150">
+    <div className="relative group bg-[var(--card)] border border-[var(--border)] rounded-lg p-5 flex flex-col justify-between h-full shadow-neo hover-brutal transition-all duration-200">
       <div>
         <div className="flex justify-between items-start mb-3">
-          <span className="font-mono text-[10px] font-bold tracking-wider text-black bg-brutal-cyan border-2 border-black dark:border-white px-2 py-0.5 shadow-neo-sm">
+          <span className="font-mono text-[10px] font-bold tracking-wider text-neutral-500 uppercase">
             {category}
           </span>
         </div>
@@ -51,12 +51,12 @@ export default function ProjectCard({
           ))}
         </div>
 
-        <div className="flex items-center gap-3 pt-4 border-t-2 border-black dark:border-white relative z-10">
+        <div className="flex items-center gap-3 pt-4 border-t border-[var(--border)] relative z-10">
           <a
             href={githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 px-3 py-1.5 border-2 border-black dark:border-white bg-[var(--canvas)] text-xs font-mono font-bold text-[var(--text-primary)] shadow-neo-sm hover:bg-brutal-coral hover:text-black hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_0px_var(--border)] active:translate-x-0 active:translate-y-0 active:shadow-neo-sm transition-all duration-150"
+            className="flex items-center gap-1.5 px-3 py-1.5 border border-[var(--border)] bg-[var(--canvas)] text-xs font-mono font-semibold text-[var(--text-primary)] rounded-md hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-150"
             aria-label={`View ${title} source code on GitHub`}
           >
             <Github className="w-3.5 h-3.5" />
@@ -67,7 +67,7 @@ export default function ProjectCard({
               href={demoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 px-3 py-1.5 border-2 border-black dark:border-white bg-[var(--canvas)] text-xs font-mono font-bold text-[var(--text-primary)] shadow-neo-sm hover:bg-brutal-yellow hover:text-black hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_0px_var(--border)] active:translate-x-0 active:translate-y-0 active:shadow-neo-sm transition-all duration-150"
+              className="flex items-center gap-1.5 px-3 py-1.5 border border-[var(--border)] bg-[var(--canvas)] text-xs font-mono font-semibold text-[var(--text-primary)] rounded-md hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-150"
               aria-label={`View ${title} live demo`}
             >
               <ExternalLink className="w-3.5 h-3.5" />

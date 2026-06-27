@@ -24,6 +24,10 @@ const Education = dynamic(() => import("@/components/sections/Education"), {
   loading: () => <div className="h-40 bg-[var(--card)]/20 border border-[var(--border)] rounded-xl animate-pulse my-8" />,
 });
 
+const ApiPlayground = dynamic(() => import("@/components/sections/ApiPlayground"), {
+  loading: () => <div className="h-96 bg-[var(--card)]/20 border border-[var(--border)] rounded-xl animate-pulse my-8" />,
+});
+
 const Contact = dynamic(() => import("@/components/sections/Contact"), {
   loading: () => <div className="h-96 bg-[var(--card)]/20 border border-[var(--border)] rounded-xl animate-pulse my-8" />,
 });
@@ -42,6 +46,7 @@ export default function Home() {
           <Projects />
           <Achievements />
           <Education />
+          <ApiPlayground />
           <Contact />
         </div>
       </main>

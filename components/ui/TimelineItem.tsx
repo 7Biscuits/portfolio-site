@@ -2,9 +2,10 @@ interface TimelineItemProps {
   role: string;
   org: string;
   period: string;
-  type: "professional" | "leadership";
+  type: "professional" | "extracurricular";
   description: string;
   badge?: string;
+  logo?: string;
 }
 
 export default function TimelineItem({
@@ -14,36 +15,45 @@ export default function TimelineItem({
   type,
   description,
   badge,
+  logo,
 }: TimelineItemProps) {
   return (
-    <div className="p-6 md:p-8 flex flex-col md:flex-row gap-6 items-start relative group transition-colors duration-150 hover:bg-[var(--accent)]/5">
-      {/* Date badge: Cyan for professional, yellow/coral for leadership */}
-      <div className="w-full md:w-52 flex-shrink-0">
-        <span className="inline-block font-mono text-xs md:text-sm font-bold text-center bg-brutal-cyan text-black border-2 border-black dark:border-white px-3 py-2 shadow-neo-sm uppercase select-none">
+    <div className="p-6 md:p-8 flex flex-col md:flex-row gap-6 items-start relative group transition-colors duration-200 hover:bg-neutral-100/50 dark:hover:bg-neutral-900/30">
+      {/* Muted Date Column */}
+      <div className="w-full md:w-48 flex-shrink-0 pt-1">
+        <span className="inline-block font-mono text-xs md:text-sm font-semibold text-neutral-500 uppercase select-none">
           {period}
         </span>
       </div>
 
       {/* Content block */}
-      <div className="flex-grow space-y-2 text-left">
-        <div className="flex flex-wrap items-center gap-3">
-          <h3 className="text-xl font-bold tracking-tight text-[var(--text-primary)] leading-tight">
-            {role}
-          </h3>
-          {badge && (
-            <span className="font-mono text-[10px] font-bold bg-brutal-yellow text-black border-2 border-black px-1.5 py-0.5 shadow-neo-sm">
-              {badge}
-            </span>
-          )}
+      <div className="flex-grow flex items-start gap-4 text-left w-full">
+        {logo && (
+          <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center overflow-hidden">
+            <img src={logo} alt={org} className="w-full h-full object-contain" />
+          </div>
+        )}
+        
+        <div className="space-y-2 flex-grow">
+          <div className="flex flex-wrap items-center gap-3">
+            <h3 className="text-xl font-bold tracking-tight text-[var(--text-primary)] leading-tight">
+              {role}
+            </h3>
+            {badge && (
+              <span className="font-mono text-[10px] font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 border border-[var(--border)] px-2 py-0.5 rounded">
+                {badge}
+              </span>
+            )}
+          </div>
+          
+          <p className="text-sm font-semibold text-[var(--text-primary)]/80 uppercase tracking-wider">
+            {org}
+          </p>
+          
+          <p className="text-sm text-[var(--text-muted)] leading-relaxed max-w-3xl">
+            {description}
+          </p>
         </div>
-        
-        <p className="text-sm font-bold text-brutal-coral uppercase tracking-wider">
-          {org}
-        </p>
-        
-        <p className="text-sm text-[var(--text-muted)] leading-relaxed max-w-3xl">
-          {description}
-        </p>
       </div>
     </div>
   );

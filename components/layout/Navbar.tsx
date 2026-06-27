@@ -11,6 +11,7 @@ const NAV_ITEMS = [
   { label: "Experience", id: "experience" },
   { label: "Projects", id: "projects" },
   { label: "Achievements", id: "achievements" },
+  { label: "Playground", id: "playground" },
   { label: "Contact", id: "contact" },
 ];
 
@@ -50,19 +51,19 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-150 bg-[var(--canvas)] border-b-4 border-black dark:border-white ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-150 bg-[var(--canvas)] border-b border-[var(--border)] ${
         isScrolled ? "py-2.5 shadow-sm" : "py-4"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14">
           
-          {/* Boxed Logo */}
+          {/* Minimalist Logo */}
           <div className="flex-shrink-0">
             <a
               href="#home"
               onClick={(e) => handleNavClick(e, "home")}
-              className="inline-block border-2 border-black dark:border-white px-3 py-1 bg-[var(--card)] font-mono font-black text-sm tracking-tighter text-[var(--text-primary)] shadow-neo-sm hover-brutal select-none"
+              className="inline-block font-mono font-black text-lg tracking-tighter text-[var(--text-primary)] select-none hover:opacity-80 transition-opacity"
             >
               RU.DEV
             </a>
@@ -75,10 +76,10 @@ export default function Navbar() {
                 key={item.id}
                 href={`#${item.id}`}
                 onClick={(e) => handleNavClick(e, item.id)}
-                className={`font-mono text-xs font-bold tracking-widest transition-colors duration-150 uppercase py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brutal-coral px-2 ${
+                className={`font-mono text-xs font-semibold tracking-widest transition-colors duration-150 uppercase py-1 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-400 px-2 ${
                   activeSection === item.id
-                    ? "text-brutal-coral font-extrabold"
-                    : "text-[var(--text-primary)] hover:text-brutal-coral"
+                    ? "text-black dark:text-white font-extrabold"
+                    : "text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white"
                 }`}
               >
                 {item.label}
@@ -87,12 +88,12 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Action Items */}
-          <div className="hidden lg:flex items-center space-x-3.5">
+          <div className="hidden lg:flex items-center space-x-4">
             <a
               href={`https://github.com/${GITHUB_USERNAME}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="border-2 border-black dark:border-white p-2 bg-[var(--card)] text-[var(--text-primary)] shadow-neo-sm hover-brutal transition-all duration-150"
+              className="text-neutral-500 hover:text-black dark:hover:text-white transition-colors duration-150 p-1"
               aria-label="GitHub Profile"
             >
               <Github className="w-4 h-4" />
@@ -101,7 +102,7 @@ export default function Navbar() {
               href={LINKEDIN_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="border-2 border-black dark:border-white p-2 bg-[var(--card)] text-[var(--text-primary)] shadow-neo-sm hover-brutal transition-all duration-150"
+              className="text-neutral-500 hover:text-black dark:hover:text-white transition-colors duration-150 p-1"
               aria-label="LinkedIn Profile"
             >
               <Linkedin className="w-4 h-4" />
@@ -112,7 +113,7 @@ export default function Navbar() {
               href={RESUME_PATH}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-xs font-bold tracking-wider uppercase border-2 border-black dark:border-white bg-[var(--card)] text-[var(--text-primary)] shadow-neo-sm hover-brutal px-4 py-2 flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brutal-coral transition-all duration-150"
+              className="font-mono text-xs font-bold tracking-wider uppercase bg-black text-white dark:bg-white dark:text-black px-4 py-2 rounded hover:opacity-90 transition-opacity duration-150 flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-400"
             >
               <FileText className="w-3.5 h-3.5" />
               Resume
@@ -124,7 +125,7 @@ export default function Navbar() {
             <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 border-2 border-black dark:border-white bg-[var(--card)] text-[var(--text-primary)] shadow-neo-sm hover-brutal transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brutal-coral"
+              className="p-2 border border-[var(--border)] bg-[var(--card)] text-[var(--text-primary)] rounded hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-400"
               aria-expanded={isOpen}
               aria-controls="mobile-menu"
               aria-label="Toggle navigation menu"
@@ -138,7 +139,7 @@ export default function Navbar() {
       {/* Mobile Menu Dropdown */}
       <div
         id="mobile-menu"
-        className={`lg:hidden fixed inset-x-0 top-[72px] bg-[var(--canvas)] border-b-4 border-black dark:border-white overflow-hidden transition-all duration-300 ease-in-out shadow-lg ${
+        className={`lg:hidden fixed inset-x-0 top-[72px] bg-[var(--canvas)] border-b border-[var(--border)] overflow-hidden transition-all duration-300 ease-in-out shadow-lg ${
           isOpen ? "max-h-[420px] opacity-100 py-6" : "max-h-0 opacity-0 pointer-events-none"
         }`}
       >
@@ -150,8 +151,8 @@ export default function Navbar() {
               onClick={(e) => handleNavClick(e, item.id)}
               className={`font-mono text-sm font-bold tracking-widest uppercase transition-colors duration-150 py-1 ${
                 activeSection === item.id
-                  ? "text-brutal-coral"
-                  : "text-[var(--text-primary)] hover:text-brutal-coral"
+                  ? "text-black dark:text-white font-extrabold"
+                  : "text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white"
               }`}
             >
               {item.label}
@@ -159,7 +160,7 @@ export default function Navbar() {
           ))}
 
           {/* Divider */}
-          <div className="w-16 h-px bg-black dark:bg-white" />
+          <div className="w-16 h-px bg-[var(--border)]" />
 
           {/* Mobile Socials */}
           <div className="flex items-center gap-4">
@@ -167,7 +168,7 @@ export default function Navbar() {
               href={`https://github.com/${GITHUB_USERNAME}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="border-2 border-black dark:border-white p-2 bg-[var(--card)] text-[var(--text-primary)] shadow-neo-sm hover-brutal"
+              className="text-neutral-500 hover:text-black dark:hover:text-white transition-colors duration-150 p-1"
               aria-label="GitHub Profile"
             >
               <Github className="w-4 h-4" />
@@ -176,7 +177,7 @@ export default function Navbar() {
               href={LINKEDIN_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="border-2 border-black dark:border-white p-2 bg-[var(--card)] text-[var(--text-primary)] shadow-neo-sm hover-brutal"
+              className="text-neutral-500 hover:text-black dark:hover:text-white transition-colors duration-150 p-1"
               aria-label="LinkedIn Profile"
             >
               <Linkedin className="w-4 h-4" />
@@ -185,7 +186,7 @@ export default function Navbar() {
               href={RESUME_PATH}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-xs font-bold tracking-wider uppercase border-2 border-black dark:border-white bg-[var(--card)] text-[var(--text-primary)] shadow-neo-sm hover-brutal px-4 py-2 flex items-center gap-1.5"
+              className="font-mono text-xs font-bold tracking-wider uppercase bg-black text-white dark:bg-white dark:text-black px-4 py-2 rounded hover:opacity-90 transition-opacity flex items-center gap-1.5"
             >
               <FileText className="w-3.5 h-3.5" />
               Resume

@@ -7,25 +7,25 @@ const config: Config = {
     extend: {
       colors: {
         canvas: {
-          dark: "#0B0F19",
-          light: "#F7F6F0", // Retro Cream
+          dark: "#09090B",   // Zinc 950
+          light: "#FAFAFA",  // Zinc 50
         },
         card: {
-          dark: "#161B26",
-          light: "#FFFFFF",
+          dark: "#18181B",   // Zinc 900
+          light: "#FFFFFF",  // Pure White
         },
         border: {
-          dark: "#FFFFFF",  // Solid white borders in dark mode
-          light: "#000000", // Solid black borders in light mode
+          dark: "#27272A",   // Zinc 800
+          light: "#E4E4E7",  // Zinc 200
         },
         accent: {
-          dark: "#00F2FE",   // Electric Cyan
-          light: "#0284C7",  // Sky Blue
+          dark: "#FFFFFF",
+          light: "#09090B",
         },
         brutal: {
-          coral: "#FF6B6B",
-          cyan: "#38BDF8",
-          yellow: "#FDE047",
+          coral: "#71717A",  // Muted Zinc 500
+          cyan: "#E4E4E7",   // Zinc 200
+          yellow: "#A1A1AA", // Zinc 400
         }
       },
       fontFamily: {

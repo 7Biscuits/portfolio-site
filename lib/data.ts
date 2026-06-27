@@ -11,9 +11,10 @@ export interface TimelineEntry {
   role: string;
   org: string;
   period: string;
-  type: 'professional' | 'leadership';
+  type: 'professional' | 'extracurricular';
   description: string;
   badge?: string;
+  logo?: string;
 }
 
 export interface Award {
@@ -63,41 +64,46 @@ export const TIMELINE: TimelineEntry[] = [
   {
     role: "Co-founder & President",
     org: "Hack Club, SBS BGN",
-    period: "Jun 2022 – Feb 2025",
-    type: "leadership",
+    period: "Jun 2022 - Feb 2025",
+    type: "extracurricular",
     description: "Founded and led the city's inaugural Hack Club, building a vibrant coding community and guiding over 1,000 students in web dev and coding initiatives.",
     badge: "1,000+ students",
+    logo: "/hackclub_logo.png",
   },
   {
     role: "Co-founder & CTO",
     org: "Stellar Scholar, STEM Club",
-    period: "Mar 2024 – Feb 2025",
-    type: "leadership",
+    period: "Mar 2024 - Feb 2025",
+    type: "extracurricular",
     description: "Organized local science expositions, hackathons, and built community platforms to foster hands-on STEM education.",
     badge: "Co-founded STEM Club",
+    logo: "/stellarscholar_logo.png",
   },
   {
     role: "Head Boy",
     org: "Student Council, SBS BGN",
-    period: "Jun 2023 – Mar 2024",
-    type: "leadership",
+    period: "Jun 2023 - Mar 2024",
+    type: "extracurricular",
     description: "Represented the student body of over 3,000 students, coordinated major school events, and served as intermediary between administration and students.",
+    logo: "/sunbeam_logo.png",
   },
   {
     role: "Project Evaluator & Executive Intern",
     org: "ThinkStartup, Youth Ideathon",
-    period: "Aug 2023 – Nov 2024",
+    period: "Aug 2023 - Nov 2024",
     type: "professional",
     description: "Evaluated high school startup pitches across India, managed community outreach, and coordinated regional bootcamps.",
     badge: "Executive Intern",
+    logo: "/thinkstartup_logo.png",
   },
   {
     role: "Full-Stack Web Dev Intern",
-    org: "Luzeblaze",
+    org: "Luneblaze",
     period: "Dec 2023 - Feb 2024",
     type: "professional",
     description: "Developed production web features, optimized REST APIs, and received the Best Intern Award out of a cohort of 200+ interns.",
     badge: "Best Intern Award",
+    logo: "/luneblaze_logo.png",
   }
 ];
 
