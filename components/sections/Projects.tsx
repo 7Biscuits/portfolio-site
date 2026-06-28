@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Suspense, useState, useEffect } from "react";
 import { PROJECTS, GITHUB_USERNAME } from "@/lib/data";
 import ProjectCard from "../ui/ProjectCard";
@@ -23,7 +24,7 @@ export default function Projects() {
   const lightLangsUrl = `https://github-readme-stats.vercel.app/api/top-langs/?username=${GITHUB_USERNAME}&layout=compact&theme=transparent&title_color=09090B&text_color=71717A&bg_color=00000000&hide_border=true&cache_seconds=1800${cacheBuster}`;
 
   return (
-    <section id="projects" className="py-20 border-t border-[var(--border)]">
+    <section id="projects" className="py-20 scroll-mt-24 border-t border-[var(--border)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -55,9 +56,9 @@ export default function Projects() {
         {/* Premium GitHub Stats & Contributions Container wrapped in ScrollReveal */}
         <ScrollReveal>
           <div className="border border-[var(--border)] rounded-xl bg-[var(--card)] p-6 md:p-8 max-w-7xl mx-auto shadow-neo flex flex-col items-center justify-center">
-            <h4 className="font-mono text-xs font-bold tracking-widest text-neutral-600 dark:text-neutral-300 uppercase mb-6 w-full text-left">
-              // github developer analytics
-            </h4>
+            <h3 className="font-mono text-xs font-bold tracking-widest text-neutral-600 dark:text-neutral-300 uppercase mb-6 w-full text-left">
+              {"// github developer analytics"}
+            </h3>
             <Suspense fallback={<div className="h-48 flex items-center justify-center font-mono text-xs text-[var(--text-muted)] animate-pulse">Retrieving repository analytics...</div>}>
               <div className="w-full flex flex-col gap-8 items-center justify-center">
                 
@@ -67,16 +68,22 @@ export default function Projects() {
                   {/* Card 1: Stats */}
                   <div className="border border-[var(--border)] rounded-lg bg-[var(--canvas)] p-4 flex items-center justify-center shadow-sm hover:translate-y-[-2px] hover:shadow-md transition-all duration-200 min-h-[220px]">
                     {/* Dark mode stats */}
-                    <img
+                    <Image
                       src={darkStatsUrl}
                       alt="GitHub Stats"
+                      width={495}
+                      height={195}
+                      unoptimized
                       loading="lazy"
                       className="hidden dark:block max-w-full h-auto"
                     />
                     {/* Light mode stats */}
-                    <img
+                    <Image
                       src={lightStatsUrl}
                       alt="GitHub Stats"
+                      width={495}
+                      height={195}
+                      unoptimized
                       loading="lazy"
                       className="block dark:hidden max-w-full h-auto"
                     />
@@ -85,16 +92,22 @@ export default function Projects() {
                   {/* Card 2: Streak */}
                   <div className="border border-[var(--border)] rounded-lg bg-[var(--canvas)] p-4 flex items-center justify-center shadow-sm hover:translate-y-[-2px] hover:shadow-md transition-all duration-200 min-h-[220px]">
                     {/* Dark mode streak */}
-                    <img
+                    <Image
                       src={darkStreakUrl}
                       alt="GitHub Streak"
+                      width={495}
+                      height={195}
+                      unoptimized
                       loading="lazy"
                       className="hidden dark:block max-w-full h-auto"
                     />
                     {/* Light mode streak */}
-                    <img
+                    <Image
                       src={lightStreakUrl}
                       alt="GitHub Streak"
+                      width={495}
+                      height={195}
+                      unoptimized
                       loading="lazy"
                       className="block dark:hidden max-w-full h-auto"
                     />
@@ -103,16 +116,22 @@ export default function Projects() {
                   {/* Card 3: Top Languages */}
                   <div className="border border-[var(--border)] rounded-lg bg-[var(--canvas)] p-4 flex items-center justify-center shadow-sm hover:translate-y-[-2px] hover:shadow-md transition-all duration-200 min-h-[220px]">
                     {/* Dark mode languages */}
-                    <img
+                    <Image
                       src={darkLangsUrl}
                       alt="GitHub Top Languages"
+                      width={495}
+                      height={195}
+                      unoptimized
                       loading="lazy"
                       className="hidden dark:block max-w-full h-auto"
                     />
                     {/* Light mode languages */}
-                    <img
+                    <Image
                       src={lightLangsUrl}
                       alt="GitHub Top Languages"
+                      width={495}
+                      height={195}
+                      unoptimized
                       loading="lazy"
                       className="block dark:hidden max-w-full h-auto"
                     />
@@ -126,22 +145,28 @@ export default function Projects() {
                 {/* Contribution Calendar */}
                 <div className="w-full flex flex-col items-start gap-4">
                   <span className="font-mono text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-wider">
-                    // activity calendar
+                    {"// activity calendar"}
                   </span>
                   <div className="w-full bg-[var(--canvas)] border border-[var(--border)] rounded-lg p-4 overflow-x-auto flex justify-start lg:justify-center items-center scrollbar-thin">
                     {/* Dark mode calendar - Inverted Zinc Contributions */}
-                    <img
+                    <Image
                       src={`https://ghchart.rshah.org/18181b/${GITHUB_USERNAME}?v=1${cacheBuster}`}
                       alt={`${GITHUB_USERNAME}'s GitHub contributions calendar`}
+                      width={700}
+                      height={112}
+                      unoptimized
                       loading="lazy"
-                      className="hidden dark:block min-w-[700px] max-w-full h-auto invert"
+                      className="hidden dark:block w-[700px] max-w-none lg:max-w-full h-auto invert"
                     />
                     {/* Light mode calendar - Zinc 900 Contributions */}
-                    <img
+                    <Image
                       src={`https://ghchart.rshah.org/18181b/${GITHUB_USERNAME}?v=1${cacheBuster}`}
                       alt={`${GITHUB_USERNAME}'s GitHub contributions calendar`}
+                      width={700}
+                      height={112}
+                      unoptimized
                       loading="lazy"
-                      className="block dark:hidden min-w-[700px] max-w-full h-auto"
+                      className="block dark:hidden w-[700px] max-w-none lg:max-w-full h-auto"
                     />
                   </div>
                 </div>

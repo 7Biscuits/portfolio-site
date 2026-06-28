@@ -69,6 +69,44 @@ const PRESETS: Preset[] = [
   },
 ];
 
+function renderHighlightedJson(json: string) {
+  const tokenPattern = /("[^"\\]*(?:\\.[^"\\]*)*"(?=\s*:))|("[^"\\]*(?:\\.[^"\\]*)*")|\b(true|false|null)\b|(-?\d+(?:\.\d+)?)/g;
+  const nodes: React.ReactNode[] = [];
+  let lastIndex = 0;
+
+  Array.from(json.matchAll(tokenPattern)).forEach((match, index) => {
+    if (match.index === undefined) return;
+
+    if (match.index > lastIndex) {
+      nodes.push(json.slice(lastIndex, match.index));
+    }
+
+    const token = match[0];
+    let className = "text-amber-400 font-bold";
+
+    if (match[1]) {
+      className = "text-[#00F2FE] font-bold";
+    } else if (match[2]) {
+      className = "text-emerald-300";
+    } else if (match[3]) {
+      className = "text-rose-400 font-bold";
+    }
+
+    nodes.push(
+      <span key={`${token}-${index}`} className={className}>
+        {token}
+      </span>
+    );
+    lastIndex = match.index + token.length;
+  });
+
+  if (lastIndex < json.length) {
+    nodes.push(json.slice(lastIndex));
+  }
+
+  return nodes;
+}
+
 export default function ApiPlayground() {
   const [selectedMethod, setSelectedMethod] = useState<Method>("GET");
   const [endpoint, setEndpoint] = useState<string>("/about");
@@ -279,13 +317,13 @@ export default function ApiPlayground() {
             setResponseData(dataStr);
             setPayloadSize(`${new Blob([dataStr]).size} B`);
           }
-        } catch (e: any) {
+        } catch (e) {
           setResponseStatus(400);
           setStatusText("Bad Request");
           const errPayload = {
             error: "JSON Parsing Error",
             message: "Failed to parse request body as valid JSON. Ensure standard quotation marks are used.",
-            details: e.message,
+            details: e instanceof Error ? e.message : "Unknown parsing error",
           };
           const dataStr = JSON.stringify(errPayload, null, 2);
           setResponseData(dataStr);
@@ -324,7 +362,7 @@ export default function ApiPlayground() {
   };
 
   return (
-    <section id="playground" className="py-20 border-t border-[var(--border)]">
+    <section id="playground" className="py-20 scroll-mt-24 border-t border-[var(--border)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -344,15 +382,17 @@ export default function ApiPlayground() {
             <ScrollReveal className="h-full">
               <div className="bg-[#121214] border border-neutral-800 rounded-xl p-5 flex flex-col h-full text-left font-mono select-none">
                 <span className="text-[10px] text-neutral-500 font-bold uppercase tracking-wider block mb-4">
-                  // Request Presets
+                  {"// Request Presets"}
                 </span>
                 <div className="space-y-2 h-[295px] overflow-y-auto [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-neutral-800 [&::-webkit-scrollbar-thumb]:rounded [&::-webkit-scrollbar-track]:bg-transparent pr-1">
                   {PRESETS.map((preset) => {
                     const isActive = selectedMethod === preset.method && endpoint === preset.endpoint;
                     return (
                       <button
+                        type="button"
                         key={preset.id}
                         onClick={() => handlePresetSelect(preset)}
+                        aria-pressed={isActive}
                         className={`w-full text-left p-3 rounded-lg border text-xs transition-all duration-150 flex flex-col gap-1.5 ${
                           isActive
                             ? "bg-neutral-900 border-neutral-700 text-white shadow-sm"
@@ -400,8 +440,10 @@ export default function ApiPlayground() {
                     <span className="text-[10px] text-neutral-500 ml-2">playground v1.0.0</span>
                   </div>
                   <button
+                    type="button"
                     onClick={handleCopyCurl}
                     className="flex items-center gap-1.5 text-[10px] text-neutral-400 hover:text-white px-2 py-1 bg-neutral-900 hover:bg-neutral-850 border border-neutral-800 rounded transition-all"
+                    aria-label="Copy request as cURL"
                     title="Copy request as cURL"
                   >
                     {copiedCurl ? (
@@ -422,6 +464,7 @@ export default function ApiPlayground() {
                 <div className="p-4 border-b border-neutral-900 flex flex-col sm:flex-row gap-2">
                   <div className="flex-grow flex border border-neutral-850 rounded-lg bg-neutral-950 overflow-hidden">
                     <select
+                      aria-label="HTTP method"
                       value={selectedMethod}
                       onChange={(e) => {
                         const m = e.target.value as Method;
@@ -437,6 +480,7 @@ export default function ApiPlayground() {
                     <div className="flex-grow flex items-center px-3 text-neutral-600 text-xs">
                       <span className="hidden sm:inline select-none">https://api.rudransh.dev/v1</span>
                       <input
+                        aria-label="API endpoint"
                         type="text"
                         value={endpoint}
                         onChange={(e) => setEndpoint(e.target.value)}
@@ -446,8 +490,10 @@ export default function ApiPlayground() {
                     </div>
                   </div>
                   <button
+                    type="button"
                     onClick={handleSend}
                     disabled={loading}
+                    aria-label="Send mock API request"
                     className="bg-neutral-100 hover:bg-white text-neutral-950 text-xs font-bold px-5 py-3 rounded-lg flex items-center justify-center gap-1.5 transition-colors disabled:opacity-50 flex-shrink-0"
                   >
                     {loading ? (
@@ -471,6 +517,7 @@ export default function ApiPlayground() {
                       Request Body (JSON)
                     </span>
                     <textarea
+                      aria-label="Request body JSON"
                       value={requestBody}
                       onChange={(e) => setRequestBody(e.target.value)}
                       placeholder="{}"
@@ -482,7 +529,7 @@ export default function ApiPlayground() {
                 {/* Response Section */}
                 <div className="flex-grow flex flex-col bg-neutral-950/30">
                   {/* Status Bar */}
-                  <div className="border-b border-neutral-900 bg-[#0B0B0C] px-4 py-2 flex flex-wrap items-center justify-between text-[11px] gap-2 select-none">
+                  <div className="border-b border-neutral-900 bg-[#0B0B0C] px-4 py-2 flex flex-wrap items-center justify-between text-[11px] gap-2 select-none" role="status" aria-live="polite">
                     <span className="text-neutral-500 font-semibold uppercase tracking-wider">Response Details</span>
                     <div className="flex items-center gap-4">
                       {responseStatus && (
@@ -525,17 +572,7 @@ export default function ApiPlayground() {
                       </div>
                     ) : responseData ? (
                       <pre className="text-neutral-300 text-xs overflow-x-auto w-full leading-relaxed scrollbar-thin">
-                        <code dangerouslySetInnerHTML={{
-                          __html: responseData
-                            // Color key values
-                            .replace(/"([^"]+)":/g, '<span class="text-[#00F2FE] font-bold">"$1"</span>:')
-                            // Color numeric values
-                            .replace(/: (\d+)/g, ': <span class="text-amber-400 font-bold">$1</span>')
-                            // Color boolean values
-                            .replace(/: (true|false)/g, ': <span class="text-rose-400 font-bold">$1</span>')
-                            // Color string values
-                            .replace(/: "([^"]+)"/g, ': <span class="text-emerald-300">"$1"</span>')
-                        }} />
+                        <code>{renderHighlightedJson(responseData)}</code>
                       </pre>
                     ) : (
                       <div className="flex-grow flex flex-col items-center justify-center text-neutral-600 text-xs select-none py-10 gap-2">

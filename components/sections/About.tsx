@@ -44,7 +44,7 @@ export default function About() {
   };
 
   return (
-    <section id="about" className="py-20 border-t border-[var(--border)]">
+    <section id="about" className="py-20 scroll-mt-24 border-t border-[var(--border)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -67,7 +67,7 @@ export default function About() {
                   An aspiring AI/software engineer focused on full-stack development, system design, and applied ML. Incoming CSE freshman looking for opportunities to work on something cool and innovative.
                 </p>
                 <p className="text-sm text-[var(--text-muted)] leading-relaxed">
-                  I enjoy building systems that connect the physical and digital worlds. Whether it's programming embedded controllers, integrating computer vision, or developing scalable backend services, I like working across the entire technology stack to turn ideas into reliable, real-world products.
+                  I enjoy building systems that connect the physical and digital worlds. Whether it&apos;s programming embedded controllers, integrating computer vision, or developing scalable backend services, I like working across the entire technology stack to turn ideas into reliable, real-world products.
                 </p>
               </div>
             </ScrollReveal>
@@ -78,7 +78,7 @@ export default function About() {
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <span className="font-mono text-xs font-bold tracking-widest text-neutral-600 dark:text-neutral-300 uppercase">
-                      // CURRENT_FOCUS
+                      {"// CURRENT_FOCUS"}
                     </span>
                     <div className="flex items-center gap-1">
                       {FOCUS_ITEMS.map((_, i) => (
@@ -105,6 +105,7 @@ export default function About() {
                   </span>
                   <div className="flex items-center gap-2 select-none">
                     <button
+                      type="button"
                       onClick={handlePrev}
                       className="p-1 rounded border border-[var(--border)] hover:bg-neutral-100 dark:hover:bg-neutral-800 text-[var(--text-primary)] transition-colors"
                       aria-label="Previous focus item"
@@ -112,6 +113,7 @@ export default function About() {
                       <ChevronLeft className="w-3.5 h-3.5" />
                     </button>
                     <button
+                      type="button"
                       onClick={handleNext}
                       className="p-1 rounded border border-[var(--border)] hover:bg-neutral-100 dark:hover:bg-neutral-800 text-[var(--text-primary)] transition-colors"
                       aria-label="Next focus item"
@@ -131,9 +133,10 @@ export default function About() {
                 <div
                   className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-5 shadow-neo space-y-3 text-left"
                 >
-                  <h4 className="font-mono text-xs font-bold tracking-wider text-neutral-600 dark:text-neutral-300 uppercase">
-                    // {category}
-                  </h4>
+                  <h3 className="font-mono text-xs font-bold tracking-wider text-neutral-600 dark:text-neutral-300 uppercase">
+                    {"// "}
+                    {category}
+                  </h3>
                   <div className="flex flex-wrap gap-2">
                     {skillList.map((skill) => (
                       <SkillTag key={skill} label={skill} />

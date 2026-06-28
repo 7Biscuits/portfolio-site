@@ -10,7 +10,7 @@ export default function Achievements() {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <section id="achievements" className="py-20 border-t border-[var(--border)]">
+    <section id="achievements" className="py-20 scroll-mt-24 border-t border-[var(--border)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -27,9 +27,9 @@ export default function Achievements() {
           
           {/* Left Column: Awards List with Staggered ScrollReveal */}
           <div className="lg:col-span-7 space-y-6 text-left">
-            <h4 className="font-mono text-xs font-bold tracking-widest text-neutral-600 dark:text-neutral-300 uppercase mb-4">
-              // elite recognition &amp; honors
-            </h4>
+            <h3 className="font-mono text-xs font-bold tracking-widest text-neutral-600 dark:text-neutral-300 uppercase mb-4">
+              {"// elite recognition & honors"}
+            </h3>
             <div className="space-y-5">
               {(isExpanded ? AWARDS : AWARDS.slice(0, 3)).map((award, index) => (
                 <ScrollReveal key={`award-wrapper-${index}`} delay={index * 100}>
@@ -37,9 +37,9 @@ export default function Achievements() {
                     className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-neo hover-brutal transition-all duration-200"
                   >
                     <div className="space-y-1 text-left">
-                      <h5 className="font-bold text-[var(--text-primary)] text-base">
+                      <h4 className="font-bold text-[var(--text-primary)] text-base">
                         {award.title}
-                      </h5>
+                      </h4>
                       <p className="text-xs text-[var(--text-muted)] leading-relaxed">
                         {award.context}
                       </p>
@@ -55,6 +55,7 @@ export default function Achievements() {
             {AWARDS.length > 3 && (
               <div className="flex justify-start pt-2">
                 <button
+                  type="button"
                   onClick={() => setIsExpanded(!isExpanded)}
                   className="font-mono text-xs font-bold tracking-widest uppercase border border-[var(--border)] bg-[var(--card)] text-[var(--text-primary)] hover:bg-neutral-50 dark:hover:bg-neutral-900 px-6 py-3.5 rounded-md flex items-center gap-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-400 transition-colors duration-150"
                 >
@@ -74,9 +75,9 @@ export default function Achievements() {
 
           {/* Right Column: Research Publications wrapped in ScrollReveal */}
           <div className="lg:col-span-5 space-y-6">
-            <h4 className="font-mono text-xs font-bold tracking-widest text-neutral-600 dark:text-neutral-300 uppercase mb-4 text-left">
-              // academic publications
-            </h4>
+            <h3 className="font-mono text-xs font-bold tracking-widest text-neutral-600 dark:text-neutral-300 uppercase mb-4 text-left">
+              {"// academic publications"}
+            </h3>
             
             <ScrollReveal delay={200}>
               <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 shadow-neo hover-brutal flex flex-col justify-between h-full min-h-[300px] transition-all duration-200 text-left">
@@ -87,9 +88,9 @@ export default function Achievements() {
                       Research Article
                     </span>
                   </div>
-                  <h5 className="text-lg font-bold text-[var(--text-primary)] leading-snug">
+                  <h4 className="text-lg font-bold text-[var(--text-primary)] leading-snug">
                     Mini-Vent - An Economical Miniaturized Intensive Care Unit System
-                  </h5>
+                  </h4>
                   <p className="text-sm text-[var(--text-muted)] leading-relaxed">
                     Published in the <span className="font-bold text-[var(--text-primary)]">International Research Journal of Engineering and Technology (IRJET)</span>. The paper explores how our intuitive, easy-to-use system and remote monitoring system addresses the urgent need for accessible respiratory support in overwhelmed healthcare facilities. We discuss the design process, implementation challenges and the potential impact of this technology in improving patient outcomes during global health crises.
                   </p>

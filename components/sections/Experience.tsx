@@ -4,7 +4,7 @@ import ScrollReveal from "../ui/ScrollReveal";
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-20 border-t border-[var(--border)]">
+    <section id="experience" className="py-20 scroll-mt-24 border-t border-[var(--border)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}

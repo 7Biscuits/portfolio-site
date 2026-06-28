@@ -1,46 +1,9 @@
-"use client";
-
+import Image from "next/image";
 import { Mail, ArrowRight, Github, Linkedin, FileText } from "lucide-react";
 import ScrollMarquee from "../ui/ScrollMarquee";
 import { GITHUB_USERNAME, LINKEDIN_URL, RESUME_PATH, MARQUEE_ITEMS } from "@/lib/data";
 
 export default function Hero() {
-  const handleScrollToProjects = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
-    e.preventDefault();
-    const element = document.getElementById("projects");
-    if (element) {
-      const offset = 80;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-      window.history.pushState(null, "", "#projects");
-    }
-  };
-
-  const handleScrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const element = document.getElementById("contact");
-    if (element) {
-      const offset = 80;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-      window.history.pushState(null, "", "#contact");
-    }
-  };
-
   return (
     <section id="home" className="pt-28 lg:pt-36 pb-12 flex flex-col justify-between min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow flex items-center py-8">
@@ -69,7 +32,7 @@ export default function Hero() {
             <div className="space-y-4">
               <div className="flex items-center gap-3 border-l-2 border-neutral-300 dark:border-neutral-700 pl-4 py-1">
                 <span className="font-mono text-sm sm:text-base font-bold tracking-widest text-[var(--text-primary)] uppercase select-none">
-                  // FULL-STACK DEVELOPER &amp; IOT ENGINEER
+                  {"// FULL-STACK DEVELOPER & IOT ENGINEER"}
                 </span>
               </div>
               <p className="font-mono text-sm tracking-wide text-[var(--text-muted)] max-w-2xl leading-relaxed">
@@ -81,7 +44,6 @@ export default function Hero() {
             <div className="flex flex-wrap items-center gap-4 sm:gap-6 pt-4 relative z-10">
               <a
                 href="#projects"
-                onClick={handleScrollToProjects}
                 className="font-mono text-xs font-bold tracking-widest uppercase bg-neutral-900 text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-100 px-6 py-3.5 rounded-md flex items-center gap-2 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-400"
               >
                 View Projects
@@ -90,7 +52,6 @@ export default function Hero() {
 
               <a
                 href="#contact"
-                onClick={handleScrollToContact}
                 className="font-mono text-xs font-bold tracking-widest uppercase border border-[var(--border)] bg-[var(--card)] text-[var(--text-primary)] hover:bg-neutral-50 dark:hover:bg-neutral-900 px-6 py-3.5 rounded-md flex items-center gap-2 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-400"
               >
                 <Mail className="w-4 h-4" />
@@ -137,9 +98,12 @@ export default function Hero() {
               
               {/* Image panel: developer avatar (full color) */}
               <div className="relative w-full h-[280px] sm:h-[340px] bg-neutral-100 dark:bg-neutral-900 rounded-lg overflow-hidden border border-[var(--border)] flex flex-col items-center justify-center">
-                <img
+                <Image
                   src="/avatar.jpeg"
                   alt="Rudransh Srivastava"
+                  fill
+                  priority
+                  sizes="(min-width: 640px) 348px, 288px"
                   className="w-full h-full object-cover"
                 />
                 

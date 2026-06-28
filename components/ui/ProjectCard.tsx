@@ -21,7 +21,7 @@ export default function ProjectCard({
   const primaryUrl = demoUrl || githubUrl;
 
   return (
-    <div className="relative group bg-[var(--card)] border border-[var(--border)] rounded-lg p-5 flex flex-col justify-between h-full shadow-neo hover-brutal transition-all duration-200">
+    <article className="relative group bg-[var(--card)] border border-[var(--border)] rounded-lg p-5 flex flex-col justify-between h-full shadow-neo hover-brutal transition-all duration-200">
       <div>
         <div className="flex justify-between items-start mb-3">
           <span className="font-mono text-[10px] font-bold tracking-wider text-neutral-500 uppercase">
@@ -76,6 +76,6 @@ export default function ProjectCard({
           )}
         </div>
       </div>
-    </div>
+    </article>
   );
 }

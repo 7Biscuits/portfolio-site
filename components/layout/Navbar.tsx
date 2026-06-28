@@ -15,10 +15,12 @@ const NAV_ITEMS = [
   { label: "Contact", id: "contact" },
 ];
 
+const SECTION_IDS = ["home", ...NAV_ITEMS.map((item) => item.id)];
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useActiveSection(["home", ...NAV_ITEMS.map((item) => item.id)]);
+  const [activeSection, setActiveSection] = useActiveSection(SECTION_IDS);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,6 +56,7 @@ export default function Navbar() {
 
   return (
     <nav
+      aria-label="Primary"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-150 bg-[var(--canvas)] border-b border-[var(--border)] ${
         isScrolled ? "py-2.5 shadow-sm" : "py-4"
       }`}
@@ -79,6 +82,7 @@ export default function Navbar() {
                 key={item.id}
                 href={`#${item.id}`}
                 onClick={(e) => handleNavClick(e, item.id)}
+                aria-current={activeSection === item.id ? "location" : undefined}
                 className={`font-mono text-xs font-semibold tracking-widest transition-colors duration-150 uppercase py-1 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-400 px-2 ${
                   activeSection === item.id
                     ? "text-black dark:text-white font-extrabold"
@@ -127,6 +131,7 @@ export default function Navbar() {
           <div className="flex lg:hidden items-center space-x-3">
             <ThemeToggle />
             <button
+              type="button"
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 border border-[var(--border)] bg-[var(--card)] text-[var(--text-primary)] rounded hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-400"
               aria-expanded={isOpen}
@@ -142,7 +147,7 @@ export default function Navbar() {
       {/* Mobile Menu Dropdown */}
       <div
         id="mobile-menu"
-        className={`lg:hidden fixed inset-x-0 top-[72px] bg-[var(--canvas)] border-b border-[var(--border)] overflow-hidden transition-all duration-300 ease-in-out shadow-lg ${
+        className={`lg:hidden absolute inset-x-0 top-full bg-[var(--canvas)] border-b border-[var(--border)] overflow-hidden transition-all duration-300 ease-in-out shadow-lg ${
           isOpen ? "max-h-[420px] opacity-100 py-6" : "max-h-0 opacity-0 pointer-events-none"
         }`}
       >
@@ -152,6 +157,7 @@ export default function Navbar() {
               key={item.id}
               href={`#${item.id}`}
               onClick={(e) => handleNavClick(e, item.id)}
+              aria-current={activeSection === item.id ? "location" : undefined}
               className={`font-mono text-sm font-bold tracking-widest uppercase transition-colors duration-150 py-1 ${
                 activeSection === item.id
                   ? "text-black dark:text-white font-extrabold"

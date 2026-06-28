@@ -6,7 +6,7 @@ export default function Education() {
   const subjects = ["Physics", "Chemistry", "Mathematics", "English", "Computer Science", "Entrepreneurship"];
 
   return (
-    <section id="education" className="py-20 border-t border-[var(--border)]">
+    <section id="education" className="py-20 scroll-mt-24 border-t border-[var(--border)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -44,9 +44,9 @@ export default function Education() {
             </div>
 
             <div className="border-t border-[var(--border)] pt-5">
-              <h4 className="font-mono text-xs font-bold tracking-widest text-neutral-600 dark:text-neutral-300 uppercase mb-3.5">
-                // curriculum &amp; subjects
-              </h4>
+              <h3 className="font-mono text-xs font-bold tracking-widest text-neutral-600 dark:text-neutral-300 uppercase mb-3.5">
+                {"// curriculum & subjects"}
+              </h3>
               <div className="flex flex-wrap gap-2">
                 {subjects.map((subject) => (
                   <SkillTag key={subject} label={subject} />

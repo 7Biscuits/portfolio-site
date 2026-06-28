@@ -20,7 +20,7 @@ export default function Contact() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("idle");
     setStatusMessage("");
@@ -79,7 +79,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 border-t border-[var(--border)]">
+    <section id="contact" className="py-20 scroll-mt-24 border-t border-[var(--border)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -99,10 +99,10 @@ export default function Contact() {
             <ScrollReveal delay={0}>
               <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 md:p-8 shadow-neo hover-brutal transition-all duration-200 text-left">
                 <h3 className="font-mono text-xs font-bold tracking-widest text-neutral-600 dark:text-neutral-300 uppercase mb-6">
-                  // dispatch message
+                  {"// dispatch message"}
                 </h3>
 
-                <div className="space-y-5">
+                <form className="space-y-5" onSubmit={handleSubmit}>
                   {/* Name Field */}
                   <div className="flex flex-col space-y-2">
                     <label htmlFor="name-input" className="font-mono text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider">
@@ -112,6 +112,7 @@ export default function Contact() {
                       id="name-input"
                       type="text"
                       name="name"
+                      autoComplete="name"
                       value={formData.name}
                       onChange={handleInputChange}
                       placeholder="Rudransh Srivastava"
@@ -129,6 +130,7 @@ export default function Contact() {
                       id="email-input"
                       type="email"
                       name="email"
+                      autoComplete="email"
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder="name@example.com"
@@ -157,6 +159,8 @@ export default function Contact() {
                   {/* Status Alert Block */}
                   {status !== "idle" && (
                     <div
+                      role={status === "success" ? "status" : "alert"}
+                      aria-live={status === "success" ? "polite" : "assertive"}
                       className={`flex items-start gap-3 p-4 border rounded-lg ${
                         status === "success"
                           ? "bg-green-500/10 border-green-500/30 text-green-700 dark:text-green-400"
@@ -174,14 +178,14 @@ export default function Contact() {
 
                   {/* Submit Button */}
                   <button
-                    onClick={handleSubmit}
+                    type="submit"
                     disabled={loading}
                     className="w-full font-mono text-xs font-bold tracking-widest uppercase bg-black text-white dark:bg-white dark:text-black rounded-lg px-6 py-4 hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-400"
                   >
                     {loading ? "Transmitting..." : "Send Message"}
                     <Send className="w-3.5 h-3.5" />
                   </button>
-                </div>
+	                </form>
               </div>
             </ScrollReveal>
           </div>
@@ -191,7 +195,7 @@ export default function Contact() {
             <ScrollReveal delay={150}>
               <div className="space-y-6">
                 <h3 className="font-mono text-xs font-bold tracking-widest text-neutral-600 dark:text-neutral-300 uppercase mb-4 text-left">
-                  // direct coordinates
+                  {"// direct coordinates"}
                 </h3>
 
                 <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 md:p-8 space-y-6 shadow-neo hover-brutal transition-all duration-200 text-left">

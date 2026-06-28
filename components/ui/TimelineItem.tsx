@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 interface TimelineItemProps {
   role: string;
   org: string;
@@ -18,19 +20,19 @@ export default function TimelineItem({
   logo,
 }: TimelineItemProps) {
   return (
-    <div className="p-6 md:p-8 flex flex-col md:flex-row gap-6 items-start relative group transition-colors duration-200 hover:bg-neutral-100/50 dark:hover:bg-neutral-900/30">
+    <article className="p-6 md:p-8 flex flex-col md:flex-row gap-6 items-start relative group transition-colors duration-200 hover:bg-neutral-100/50 dark:hover:bg-neutral-900/30">
       {/* Muted Date Column */}
       <div className="w-full md:w-48 flex-shrink-0 pt-1">
-        <span className="inline-block font-mono text-xs md:text-sm font-semibold text-neutral-500 uppercase select-none">
+        <time className="inline-block font-mono text-xs md:text-sm font-semibold text-neutral-500 uppercase select-none">
           {period}
-        </span>
+        </time>
       </div>
 
       {/* Content block */}
       <div className="flex-grow flex items-start gap-4 text-left min-w-0 w-full md:w-0 md:flex-1">
         {logo && (
           <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center overflow-hidden">
-            <img src={logo} alt={org} className="w-full h-full object-contain" />
+            <Image src={logo} alt={org} width={48} height={48} className="w-full h-full object-contain" />
           </div>
         )}
         
@@ -55,6 +57,6 @@ export default function TimelineItem({
           </p>
         </div>
       </div>
-    </div>
+    </article>
   );
 }
