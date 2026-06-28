@@ -26,6 +26,12 @@
   color-scheme: dark;
 }
 
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 /* Base styles using CSS variables */
 body {
   color: var(--text-primary);

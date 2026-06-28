@@ -1,17 +1,26 @@
-import { Suspense } from "react";
+"use client";
+
+import { Suspense, useState, useEffect } from "react";
 import { PROJECTS, GITHUB_USERNAME } from "@/lib/data";
 import ProjectCard from "../ui/ProjectCard";
 import ScrollReveal from "../ui/ScrollReveal";
 
 export default function Projects() {
-  const darkStatsUrl = `https://github-readme-stats.vercel.app/api?username=${GITHUB_USERNAME}&show_icons=true&theme=transparent&title_color=FFFFFF&icon_color=FFFFFF&text_color=A1A1AA&bg_color=00000000&hide_border=true&v=1`;
-  const lightStatsUrl = `https://github-readme-stats.vercel.app/api?username=${GITHUB_USERNAME}&show_icons=true&theme=transparent&title_color=09090B&icon_color=09090B&text_color=71717A&bg_color=00000000&hide_border=true&v=1`;
+  const [cacheBuster, setCacheBuster] = useState("");
 
-  const darkStreakUrl = `https://streak-stats.demolab.com/?user=${GITHUB_USERNAME}&theme=transparent&ring=FFFFFF&fire=FFFFFF&currStreakNum=FFFFFF&sideNums=FFFFFF&currStreakLabel=A1A1AA&sideLabels=A1A1AA&dates=71717A&hide_border=true&v=1`;
-  const lightStreakUrl = `https://streak-stats.demolab.com/?user=${GITHUB_USERNAME}&theme=transparent&ring=09090B&fire=09090B&currStreakNum=09090B&sideNums=09090B&currStreakLabel=71717A&sideLabels=71717A&dates=A1A1AA&hide_border=true&v=1`;
+  useEffect(() => {
+    // Generate a client-side cache buster changing every 15 minutes to guarantee auto-updates without API rate limits
+    setCacheBuster(`&v=${Math.floor(Date.now() / (1000 * 60 * 15))}`);
+  }, []);
 
-  const darkLangsUrl = `https://github-readme-stats.vercel.app/api/top-langs/?username=${GITHUB_USERNAME}&layout=compact&theme=transparent&title_color=FFFFFF&text_color=A1A1AA&bg_color=00000000&hide_border=true&v=1`;
-  const lightLangsUrl = `https://github-readme-stats.vercel.app/api/top-langs/?username=${GITHUB_USERNAME}&layout=compact&theme=transparent&title_color=09090B&text_color=71717A&bg_color=00000000&hide_border=true&v=1`;
+  const darkStatsUrl = `https://github-readme-stats.vercel.app/api?username=${GITHUB_USERNAME}&show_icons=true&theme=transparent&title_color=FFFFFF&icon_color=FFFFFF&text_color=A1A1AA&bg_color=00000000&hide_border=true&cache_seconds=1800${cacheBuster}`;
+  const lightStatsUrl = `https://github-readme-stats.vercel.app/api?username=${GITHUB_USERNAME}&show_icons=true&theme=transparent&title_color=09090B&icon_color=09090B&text_color=71717A&bg_color=00000000&hide_border=true&cache_seconds=1800${cacheBuster}`;
+
+  const darkStreakUrl = `https://streak-stats.demolab.com/?user=${GITHUB_USERNAME}&theme=transparent&ring=FFFFFF&fire=FFFFFF&currStreakNum=FFFFFF&sideNums=FFFFFF&currStreakLabel=A1A1AA&sideLabels=A1A1AA&dates=71717A&hide_border=true&cache_seconds=1800${cacheBuster}`;
+  const lightStreakUrl = `https://streak-stats.demolab.com/?user=${GITHUB_USERNAME}&theme=transparent&ring=09090B&fire=09090B&currStreakNum=09090B&sideNums=09090B&currStreakLabel=71717A&sideLabels=71717A&dates=A1A1AA&hide_border=true&cache_seconds=1800${cacheBuster}`;
+
+  const darkLangsUrl = `https://github-readme-stats.vercel.app/api/top-langs/?username=${GITHUB_USERNAME}&layout=compact&theme=transparent&title_color=FFFFFF&text_color=A1A1AA&bg_color=00000000&hide_border=true&cache_seconds=1800${cacheBuster}`;
+  const lightLangsUrl = `https://github-readme-stats.vercel.app/api/top-langs/?username=${GITHUB_USERNAME}&layout=compact&theme=transparent&title_color=09090B&text_color=71717A&bg_color=00000000&hide_border=true&cache_seconds=1800${cacheBuster}`;
 
   return (
     <section id="projects" className="py-20 border-t border-[var(--border)]">
@@ -119,17 +128,17 @@ export default function Projects() {
                   <span className="font-mono text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-wider">
                     // activity calendar
                   </span>
-                  <div className="w-full bg-[var(--canvas)] border border-[var(--border)] rounded-lg p-4 overflow-x-auto flex justify-center items-center">
+                  <div className="w-full bg-[var(--canvas)] border border-[var(--border)] rounded-lg p-4 overflow-x-auto flex justify-start lg:justify-center items-center scrollbar-thin">
                     {/* Dark mode calendar - Inverted Zinc Contributions */}
                     <img
-                      src={`https://ghchart.rshah.org/18181b/${GITHUB_USERNAME}?v=1`}
+                      src={`https://ghchart.rshah.org/18181b/${GITHUB_USERNAME}?v=1${cacheBuster}`}
                       alt={`${GITHUB_USERNAME}'s GitHub contributions calendar`}
                       loading="lazy"
                       className="hidden dark:block min-w-[700px] max-w-full h-auto invert"
                     />
                     {/* Light mode calendar - Zinc 900 Contributions */}
                     <img
-                      src={`https://ghchart.rshah.org/18181b/${GITHUB_USERNAME}?v=1`}
+                      src={`https://ghchart.rshah.org/18181b/${GITHUB_USERNAME}?v=1${cacheBuster}`}
                       alt={`${GITHUB_USERNAME}'s GitHub contributions calendar`}
                       loading="lazy"
                       className="block dark:hidden min-w-[700px] max-w-full h-auto"

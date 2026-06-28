@@ -18,7 +18,7 @@ const NAV_ITEMS = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const activeSection = useActiveSection(["home", ...NAV_ITEMS.map((item) => item.id)]);
+  const [activeSection, setActiveSection] = useActiveSection(["home", ...NAV_ITEMS.map((item) => item.id)]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,6 +31,9 @@ export default function Navbar() {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
     setIsOpen(false);
+    
+    // Force active state and lock observer from bouncing during scrolling
+    setActiveSection(id);
     
     const element = document.getElementById(id);
     if (element) {

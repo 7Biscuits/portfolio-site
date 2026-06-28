@@ -27,7 +27,7 @@ export default function TimelineItem({
       </div>
 
       {/* Content block */}
-      <div className="flex-grow flex items-start gap-4 text-left w-full">
+      <div className="flex-grow flex items-start gap-4 text-left min-w-0 w-full md:w-0 md:flex-1">
         {logo && (
           <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center overflow-hidden">
             <img src={logo} alt={org} className="w-full h-full object-contain" />

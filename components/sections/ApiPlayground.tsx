@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Terminal, Send, Copy, Check, Loader2 } from "lucide-react";
-import { PROJECTS, TIMELINE, AWARDS } from "@/lib/data";
+import { PROJECTS, TIMELINE, AWARDS, GITHUB_USERNAME, LINKEDIN_URL, RESUME_PATH } from "@/lib/data";
 import ScrollReveal from "../ui/ScrollReveal";
 
 type Method = "GET" | "POST";
@@ -45,6 +45,12 @@ const PRESETS: Preset[] = [
     method: "GET",
     endpoint: "/achievements",
     description: "Retrieve awards and publication records",
+  },
+  {
+    id: "get-links",
+    method: "GET",
+    endpoint: "/links",
+    description: "Retrieve social profiles and resume links",
   },
   {
     id: "post-message",
@@ -192,6 +198,17 @@ export default function ApiPlayground() {
         const dataStr = JSON.stringify(AWARDS, null, 2);
         setResponseData(dataStr);
         setPayloadSize(`${(new Blob([dataStr]).size / 1024).toFixed(2)} KB`);
+      } else if (normalizedEndpoint === "/links") {
+        const payload = {
+          github: `https://github.com/${GITHUB_USERNAME}`,
+          linkedin: LINKEDIN_URL,
+          resume: RESUME_PATH,
+        };
+        setResponseStatus(200);
+        setStatusText("OK");
+        const dataStr = JSON.stringify(payload, null, 2);
+        setResponseData(dataStr);
+        setPayloadSize(`${new Blob([dataStr]).size} B`);
       } else {
         // 404
         setResponseStatus(404);
@@ -199,7 +216,15 @@ export default function ApiPlayground() {
         const errPayload = {
           error: "Not Found",
           message: `Endpoint '${endpoint}' does not exist on this mock API server.`,
-          availableEndpoints: ["GET /about", "GET /projects", "GET /experience", "GET /education", "GET /achievements", "POST /message"],
+          availableEndpoints: [
+            "GET /about",
+            "GET /projects",
+            "GET /experience",
+            "GET /education",
+            "GET /achievements",
+            "GET /links",
+            "POST /message",
+          ],
         };
         const dataStr = JSON.stringify(errPayload, null, 2);
         setResponseData(dataStr);
@@ -321,7 +346,7 @@ export default function ApiPlayground() {
                 <span className="text-[10px] text-neutral-500 font-bold uppercase tracking-wider block mb-4">
                   // Request Presets
                 </span>
-                <div className="space-y-2 flex-grow">
+                <div className="space-y-2 h-[295px] overflow-y-auto [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-neutral-800 [&::-webkit-scrollbar-thumb]:rounded [&::-webkit-scrollbar-track]:bg-transparent pr-1">
                   {PRESETS.map((preset) => {
                     const isActive = selectedMethod === preset.method && endpoint === preset.endpoint;
                     return (
