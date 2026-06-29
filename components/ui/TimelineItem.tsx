@@ -32,7 +32,15 @@ export default function TimelineItem({
       <div className="flex-grow flex items-start gap-4 text-left min-w-0 w-full md:w-0 md:flex-1">
         {logo && (
           <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center overflow-hidden">
-            <Image src={logo} alt={org} width={48} height={48} className="w-full h-full object-contain" />
+            <Image
+              src={logo}
+              alt={org}
+              width={48}
+              height={48}
+              className={`w-full h-full object-contain ${
+                org.includes("ThinkStartup") ? "p-1.5" : ""
+              }`}
+            />
           </div>
         )}
         
