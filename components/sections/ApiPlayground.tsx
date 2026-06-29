@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Terminal, Send, Copy, Check, Loader2 } from "lucide-react";
-import { PROJECTS, TIMELINE, AWARDS, GITHUB_USERNAME, LINKEDIN_URL, RESUME_PATH } from "@/lib/data";
+import { PROJECTS, TIMELINE, AWARDS, GITHUB_USERNAME, LINKEDIN_URL, RESUME_PATH, EMAIL_ADDRESS, PHONE_NUMBER } from "@/lib/data";
 import ScrollReveal from "../ui/ScrollReveal";
 
 type Method = "GET" | "POST";
@@ -23,22 +23,16 @@ const PRESETS: Preset[] = [
     description: "Get developer biography and interests",
   },
   {
-    id: "get-projects",
-    method: "GET",
-    endpoint: "/projects",
-    description: "Retrieve featured projects list",
-  },
-  {
     id: "get-experience",
     method: "GET",
     endpoint: "/experience",
     description: "Fetch experience and leadership timeline",
   },
   {
-    id: "get-education",
+    id: "get-projects",
     method: "GET",
-    endpoint: "/education",
-    description: "Get educational details and coursework",
+    endpoint: "/projects",
+    description: "Retrieve featured projects list",
   },
   {
     id: "get-achievements",
@@ -47,10 +41,22 @@ const PRESETS: Preset[] = [
     description: "Retrieve awards and publication records",
   },
   {
+    id: "get-education",
+    method: "GET",
+    endpoint: "/education",
+    description: "Get educational details and coursework",
+  },
+  {
     id: "get-links",
     method: "GET",
     endpoint: "/links",
     description: "Retrieve social profiles and resume links",
+  },
+  {
+    id: "get-contact",
+    method: "GET",
+    endpoint: "/contact",
+    description: "Retrieve email and phone number",
   },
   {
     id: "post-message",
@@ -247,6 +253,16 @@ export default function ApiPlayground() {
         const dataStr = JSON.stringify(payload, null, 2);
         setResponseData(dataStr);
         setPayloadSize(`${new Blob([dataStr]).size} B`);
+      } else if (normalizedEndpoint === "/contact") {
+        const payload = {
+          email: EMAIL_ADDRESS,
+          phone: PHONE_NUMBER,
+        };
+        setResponseStatus(200);
+        setStatusText("OK");
+        const dataStr = JSON.stringify(payload, null, 2);
+        setResponseData(dataStr);
+        setPayloadSize(`${new Blob([dataStr]).size} B`);
       } else {
         // 404
         setResponseStatus(404);
@@ -261,6 +277,7 @@ export default function ApiPlayground() {
             "GET /education",
             "GET /achievements",
             "GET /links",
+            "GET /contact",
             "POST /message",
           ],
         };
