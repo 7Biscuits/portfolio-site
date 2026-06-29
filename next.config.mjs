@@ -8,6 +8,10 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "github-stats-extended.vercel.app",
+      },
+      {
+        protocol: "https",
         hostname: "streak-stats.demolab.com",
       },
       {
