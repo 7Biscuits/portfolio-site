@@ -62,6 +62,15 @@ export const PROJECTS: Project[] = [
 
 export const TIMELINE: TimelineEntry[] = [
   {
+    role: "Full-Stack Engineer",
+    org: "COBIT Labs",
+    period: "Feb 2025 – Present",
+    type: "professional",
+    description: "Building the complete backend and frontend infrastructure for the BuildX event management platform, featuring secure multi-role authentication, a real-time Socket.io quiz engine, and automated participant workflows.",
+    badge: "Programmed the full-stack application",
+    logo: "/cobit_logo.png",
+  },
+  {
     role: "Co-founder & President",
     org: "Hack Club, SBS BGN",
     period: "Jun 2022 - Feb 2025",
