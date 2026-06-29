@@ -188,3 +188,70 @@ export const MARQUEE_ITEMS: string[] = [
   "Building Products that impact",
   "3x Hackathon winner"
 ];
+
+export interface ProjectHighlight {
+  bullet: string;
+  image: string;
+}
+
+export interface ProjectDetail {
+  highlights: ProjectHighlight[];
+  recognitions?: string[];
+}
+
+export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
+  "Mini-ICU": {
+    highlights: [
+      {
+        bullet: "Engineered a low-cost automated ventilation system using an ARM-controlled high-torque DC motor and an oscillating compression mechanism to automate variable Ambu bag compression, targeting a production cost below $50.",
+        image: "/mini-icu.jpg",
+      },
+      {
+        bullet: "Built an IoT patient monitoring pipeline integrating Pulse Ox, ECG, and EMG sensors, streaming sub-second telemetry to an Express + MongoDB backend consumed by a cross-platform Expo mobile application.",
+        image: "/mini-icu-app.png",
+      },
+    ],
+    recognitions: [
+      "Winner — ThinkStartup Youth Ideathon 2022",
+      "Innovate4Impact — India Didac & La Trobe University (2024)",
+      "Runner-up — MoE Innovation Cell IIC Regional Meet 2023",
+    ],
+  },
+  "Eye-Blink": {
+    highlights: [
+      {
+        bullet: "Developed a real-time driver drowsiness detection algorithm using OpenCV Haar cascades and Eye Aspect Ratio (EAR) calculations to monitor blink patterns.",
+        image: "/placeholder.jpg",
+      },
+      {
+        bullet: "Integrated ABS braking system control logic via GPIO relays, simulating microsecond-level emergency brake trigger latency upon drowsiness detection.",
+        image: "/placeholder.jpg",
+      },
+    ],
+  },
+  "Kala-Kriti": {
+    highlights: [
+      {
+        bullet: "Designed a microcontroller-based exhaust pipe monitoring sensor kit reading CO and NOx levels under engine load.",
+        image: "/placeholder.jpg",
+      },
+      {
+        bullet: "Streamed telemetry data via ESP8266 Wi-Fi modules to a React dashboard mapping emission patterns over time.",
+        image: "/placeholder.jpg",
+      },
+    ],
+  },
+  "Tube.ai": {
+    highlights: [
+      {
+        bullet: "Built an automated LLM parsing bot using LangChain RAG pipelines and OpenAI Whisper transcripts to summarize and query video content.",
+        image: "/placeholder.jpg",
+      },
+      {
+        bullet: "Architected a vectorized search index caching key moments and allowing interactive user question-answering sessions.",
+        image: "/placeholder.jpg",
+      },
+    ],
+  },
+};
+

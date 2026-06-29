@@ -8,6 +8,7 @@ interface ProjectCardProps {
   stack: string[];
   githubUrl: string;
   demoUrl?: string;
+  onClick?: () => void;
 }
 
 export default function ProjectCard({
@@ -17,27 +18,21 @@ export default function ProjectCard({
   stack,
   githubUrl,
   demoUrl,
+  onClick,
 }: ProjectCardProps) {
-  const primaryUrl = demoUrl || githubUrl;
-
   return (
-    <article className="relative group bg-[var(--card)] border border-[var(--border)] rounded-lg p-5 flex flex-col justify-between h-full shadow-neo hover-brutal transition-all duration-200">
+    <article
+      onClick={onClick}
+      className="relative group bg-[var(--card)] border border-[var(--border)] rounded-lg p-5 flex flex-col justify-between h-full shadow-neo hover-brutal transition-all duration-200 cursor-pointer text-left"
+    >
       <div>
         <div className="flex justify-between items-start mb-3">
           <span className="font-mono text-[10px] font-bold tracking-wider text-neutral-500 uppercase">
             {category}
           </span>
         </div>
-        <h3 className="text-xl font-bold tracking-tight text-[var(--text-primary)] mb-2">
-          {/* Stretched link pattern for card accessibility */}
-          <a
-            href={primaryUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="focus:outline-none after:absolute after:inset-0"
-          >
-            {title}
-          </a>
+        <h3 className="text-xl font-bold tracking-tight text-[var(--text-primary)] mb-2 group-hover:text-neutral-600 dark:group-hover:text-neutral-300 transition-colors">
+          {title}
         </h3>
         <p className="text-sm text-[var(--text-muted)] mb-5 leading-relaxed">
           {pitch}
@@ -56,6 +51,7 @@ export default function ProjectCard({
             href={githubUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
             className="flex items-center gap-1.5 px-3 py-1.5 border border-[var(--border)] bg-[var(--canvas)] text-xs font-mono font-semibold text-[var(--text-primary)] rounded-md hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-150"
             aria-label={`View ${title} source code on GitHub`}
           >
@@ -67,6 +63,7 @@ export default function ProjectCard({
               href={demoUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
               className="flex items-center gap-1.5 px-3 py-1.5 border border-[var(--border)] bg-[var(--canvas)] text-xs font-mono font-semibold text-[var(--text-primary)] rounded-md hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-150"
               aria-label={`View ${title} live demo`}
             >
