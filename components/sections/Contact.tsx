@@ -115,7 +115,7 @@ export default function Contact() {
                       autoComplete="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      placeholder="Rudransh Srivastava"
+                      placeholder="John Doe"
                       className="w-full bg-[var(--canvas)] border border-[var(--border)] rounded-lg px-4 py-3 text-sm text-[var(--text-primary)] focus:outline-none focus:ring-1 focus:ring-neutral-400 transition-all duration-150"
                       required
                     />
