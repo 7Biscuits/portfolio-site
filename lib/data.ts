@@ -191,7 +191,8 @@ export const MARQUEE_ITEMS: string[] = [
 
 export interface ProjectHighlight {
   bullet: string;
-  image: string;
+  image?: string;
+  videoUrl?: string;
 }
 
 export interface ProjectDetail {
@@ -258,11 +259,15 @@ export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
     highlights: [
       {
         bullet: "Built an automated LLM parsing bot using LangChain RAG pipelines and OpenAI Whisper transcripts to summarize and query video content.",
-        image: "/placeholder.jpg",
+        image: "/tubeai-workflow.png",
       },
       {
         bullet: "Architected a vectorized search index caching key moments and allowing interactive user question-answering sessions.",
-        image: "/placeholder.jpg",
+        image: "/tubeai-portal.jpeg",
+      },
+      {
+        bullet: "Integrated a video demonstration walk-through showcasing real-time transcription, semantic querying, and instant summarization flows.",
+        videoUrl: "https://www.youtube.com/watch?v=kF1pR_0rmW4",
       },
     ],
   },

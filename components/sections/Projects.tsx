@@ -7,6 +7,13 @@ import { X, Github, ExternalLink, Trophy, FileText } from "lucide-react";
 import ProjectCard from "../ui/ProjectCard";
 import ScrollReveal from "../ui/ScrollReveal";
 
+const getYouTubeEmbedUrl = (url: string) => {
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+  const match = url.match(regExp);
+  const id = match && match[2].length === 11 ? match[2] : null;
+  return id ? `https://www.youtube.com/embed/${id}` : "";
+};
+
 export default function Projects() {
   const [cacheBuster, setCacheBuster] = useState("");
   const [selectedProject, setSelectedProject] = useState<string | null>(null);
@@ -198,7 +205,7 @@ export default function Projects() {
                       <div className="border border-[var(--border)] rounded-lg bg-[var(--card)] overflow-hidden p-1 shadow-sm mt-auto">
                         <div 
                           className="relative aspect-[16/9] w-full cursor-zoom-in group/img"
-                          onClick={() => setZoomedImage(highlight.image)}
+                          onClick={() => setZoomedImage(highlight.image!)}
                         >
                           <Image
                             src={highlight.image}
@@ -223,8 +230,32 @@ export default function Projects() {
                                     : index === 1
                                       ? "Real-Time Sync Engine"
                                       : "Operational Console")
-                                : "System Architecture"}
+                                : project.title === "Tube.ai"
+                                  ? (index === 0
+                                      ? "Workflow Engine"
+                                      : "User Dashboard")
+                                  : "System Architecture"}
                           </span>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Playable Video Embed */}
+                    {highlight.videoUrl && (
+                      <div className="border border-[var(--border)] rounded-lg bg-[var(--card)] overflow-hidden p-1 shadow-sm mt-auto">
+                        <div className="relative aspect-[16/9] w-full bg-black">
+                          <iframe
+                            src={getYouTubeEmbedUrl(highlight.videoUrl)}
+                            title={`Demo Video for ${project.title}`}
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowFullScreen
+                            className="absolute inset-0 w-full h-full rounded-md"
+                          />
+                        </div>
+                        <div className="bg-[var(--card)] px-3 py-2 border-t border-[var(--border)] flex justify-between items-center text-[10px] font-mono text-[var(--text-muted)] select-none">
+                          <span>{`[ Video demo ]`}</span>
+                          <span>Playable Walkthrough</span>
                         </div>
                       </div>
                     )}
