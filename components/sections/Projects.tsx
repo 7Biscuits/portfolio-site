@@ -10,10 +10,23 @@ import ScrollReveal from "../ui/ScrollReveal";
 export default function Projects() {
   const [cacheBuster, setCacheBuster] = useState("");
   const [selectedProject, setSelectedProject] = useState<string | null>(null);
+  const [zoomedImage, setZoomedImage] = useState<string | null>(null);
 
   useEffect(() => {
     // Generate a client-side cache buster changing every 15 minutes to guarantee auto-updates without API rate limits
     setCacheBuster(`&v=${Math.floor(Date.now() / (1000 * 60 * 15))}`);
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setZoomedImage((zoomed) => {
+          if (zoomed) return null;
+          setSelectedProject(null);
+          return null;
+        });
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   const darkStatsUrl = `https://github-stats-extended.vercel.app/api?username=${GITHUB_USERNAME}&show_icons=true&theme=transparent&title_color=FFFFFF&icon_color=FFFFFF&text_color=A1A1AA&bg_color=00000000&hide_border=true&cache_seconds=1800${cacheBuster}`;
@@ -183,13 +196,16 @@ export default function Projects() {
                     {/* Associated Figure Image */}
                     {highlight.image && (
                       <div className="border border-[var(--border)] rounded-lg bg-[var(--card)] overflow-hidden p-1 shadow-sm mt-auto">
-                        <div className="relative aspect-[16/9] w-full">
+                        <div 
+                          className="relative aspect-[16/9] w-full cursor-zoom-in group/img"
+                          onClick={() => setZoomedImage(highlight.image)}
+                        >
                           <Image
                             src={highlight.image}
                             alt={`Figure ${index + 1} for ${project.title}`}
                             fill
                             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                            className="object-cover rounded-md"
+                            className="object-cover rounded-md hover:scale-[1.015] transition-transform duration-200"
                           />
                         </div>
                         <div className="bg-[var(--card)] px-3 py-2 border-t border-[var(--border)] flex justify-between items-center text-[10px] font-mono text-[var(--text-muted)] select-none">
@@ -359,6 +375,38 @@ export default function Projects() {
         </ScrollReveal>
 
       </div>
+
+      {/* Enlarged Image Lightbox Modal */}
+      {zoomedImage && (
+        <div
+          className="fixed inset-0 bg-black/90 z-50 flex flex-col items-center justify-center cursor-zoom-out animate-in fade-in duration-200"
+          onClick={() => setZoomedImage(null)}
+          aria-modal="true"
+          role="dialog"
+        >
+          <span className="font-mono text-[9px] font-bold text-neutral-500 uppercase tracking-widest mb-4 select-none animate-in fade-in slide-in-from-top-2 duration-300">
+            [ CLICK ANYWHERE TO CLOSE // ESC ]
+          </span>
+          <div 
+            className="relative max-w-[90vw] max-h-[80vh] w-full h-full flex items-center justify-center p-2"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div 
+              className="relative aspect-[16/9] w-full max-w-4xl max-h-[75vh] border border-neutral-800 rounded-lg overflow-hidden bg-black shadow-2xl animate-in zoom-in-95 duration-200 cursor-default"
+              onClick={() => setZoomedImage(null)}
+            >
+              <Image
+                src={zoomedImage}
+                alt="Enlarged Project Figure View"
+                fill
+                sizes="100vw"
+                className="object-contain cursor-zoom-out"
+                priority
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
