@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { Suspense, useState, useEffect } from "react";
 import { PROJECTS, GITHUB_USERNAME, PROJECT_DETAILS } from "@/lib/data";
-import { X, Github, ExternalLink, Trophy } from "lucide-react";
+import { X, Github, ExternalLink, Trophy, FileText } from "lucide-react";
 import ProjectCard from "../ui/ProjectCard";
 import ScrollReveal from "../ui/ScrollReveal";
 
@@ -44,7 +44,7 @@ export default function Projects() {
 
         {/* Detailed Expanded Panel or Normal Grid */}
         {selectedProject && project && details ? (
-          <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 md:p-10 shadow-neo text-left relative animate-in fade-in slide-in-from-bottom-4 duration-300 mb-16">
+          <div className="bg-[var(--card)] border border-[var(--border)] rounded-xl p-6 md:p-8 shadow-neo text-left relative animate-in fade-in slide-in-from-bottom-4 duration-300 mb-16 space-y-8">
             
             {/* Top Close Button */}
             <button
@@ -59,134 +59,161 @@ export default function Projects() {
             </button>
 
             {/* Header Details */}
-            <div className="mb-8 pr-12">
+            <div className="pr-12">
               <span className="block font-mono text-[10px] font-bold text-neutral-500 uppercase tracking-widest mb-1.5">
                 {project.category} {"// PROJECT_DETAIL"}
               </span>
               <h3 className="text-3xl font-extrabold tracking-tight text-[var(--text-primary)] mb-3">
                 {project.title}
               </h3>
-              <p className="text-base text-[var(--text-muted)] leading-relaxed max-w-3xl">
+              <p className="text-base text-[var(--text-muted)] leading-relaxed max-w-4xl">
                 {project.tagline}
               </p>
             </div>
 
-            {/* Grid Layout: Left / Right columns */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start border-t border-[var(--border)] pt-8">
-              
-              {/* Left Column (Metadata, stack, links, recognitions) */}
-              <div className="lg:col-span-5 space-y-6">
-                
-                {/* Tech Stack */}
-                <div className="space-y-3">
-                  <h4 className="font-mono text-xs font-bold tracking-widest text-neutral-600 dark:text-neutral-300 uppercase">
-                    {"// TECH_STACK"}
-                  </h4>
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.stack.map((tag) => (
-                      <span
-                        key={tag}
-                        className="font-mono text-[10px] font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 border border-[var(--border)] px-2 py-0.5 rounded"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* External Actions */}
-                <div className="flex items-center gap-3 pt-2">
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 px-4 py-2 border border-[var(--border)] bg-[var(--canvas)] text-xs font-mono font-semibold text-[var(--text-primary)] rounded-md hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-150"
-                  >
-                    <Github className="w-4 h-4" />
-                    <span>View Repository</span>
-                  </a>
-                  {project.demoUrl && (
-                    <a
-                      href={project.demoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 px-4 py-2 border border-[var(--border)] bg-[var(--canvas)] text-xs font-mono font-semibold text-[var(--text-primary)] rounded-md hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-150"
+            {/* Meta Section (Tech stack & actions in a responsive row) */}
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-t border-b border-[var(--border)] py-6">
+              {/* Tech Stack */}
+              <div className="space-y-2">
+                <span className="block font-mono text-[10px] font-bold text-neutral-500 uppercase tracking-widest">
+                  {"// TECH_STACK"}
+                </span>
+                <div className="flex flex-wrap gap-1.5">
+                  {project.stack.map((tag) => (
+                    <span
+                      key={tag}
+                      className="font-mono text-[10px] font-medium bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 border border-[var(--border)] px-2.5 py-0.5 rounded"
                     >
-                      <ExternalLink className="w-4 h-4" />
-                      <span>Live Demo</span>
-                    </a>
-                  )}
-                </div>
-
-                {/* Recognitions (Awards) */}
-                {details.recognitions && details.recognitions.length > 0 && (
-                  <div className="space-y-3.5 pt-4 border-t border-[var(--border)]">
-                    <h4 className="font-mono text-xs font-bold tracking-widest text-neutral-600 dark:text-neutral-300 uppercase flex items-center gap-1.5">
-                      <Trophy className="w-4 h-4 text-amber-500" />
-                      <span>{"// RECOGNITION"}</span>
-                    </h4>
-                    <div className="space-y-2.5">
-                      {details.recognitions.map((award, i) => {
-                        const [badge, rest] = award.includes(" — ") ? award.split(" — ") : [null, award];
-                        return (
-                          <div key={i} className="flex gap-3 items-start text-xs text-[var(--text-muted)] leading-relaxed">
-                            {badge && (
-                              <span className="font-mono text-[9px] font-extrabold uppercase bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 px-1.5 py-0.5 rounded flex-shrink-0">
-                                {badge}
-                              </span>
-                            )}
-                            <span className="font-medium text-[var(--text-primary)]/90">{rest}</span>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Right Column (Impact highlights list with figures) */}
-              <div className="lg:col-span-7 space-y-8 lg:border-l lg:border-[var(--border)] lg:pl-8">
-                <h4 className="font-mono text-xs font-bold tracking-widest text-neutral-600 dark:text-neutral-300 uppercase">
-                  {"// ENGINEERING_HIGHLIGHTS"}
-                </h4>
-                
-                <div className="space-y-8">
-                  {details.highlights.map((highlight, index) => (
-                    <div key={index} className="space-y-4">
-                      
-                      {/* Highlight Text */}
-                      <div className="flex gap-3 items-start">
-                        <span className="font-mono text-xs font-bold text-neutral-500 select-none pt-0.5">
-                          {`0${index + 1} //`}
-                        </span>
-                        <p className="text-sm text-[var(--text-primary)]/90 leading-relaxed font-medium">
-                          {highlight.bullet}
-                        </p>
-                      </div>
-
-                      {/* Associated Figure Image */}
-                      {highlight.image && (
-                        <div className="pl-8">
-                          <div className="border border-[var(--border)] rounded-lg bg-[var(--canvas)] overflow-hidden p-1 shadow-sm max-w-lg">
-                            <div className="relative aspect-[16/9] w-full">
-                              <Image
-                                src={highlight.image}
-                                alt={`Figure ${index + 1} for ${project.title}`}
-                                fill
-                                sizes="(min-width: 1024px) 460px, 100vw"
-                                className="object-cover rounded-md"
-                              />
-                            </div>
-                            <div className="bg-[var(--card)] px-3 py-2 border-t border-[var(--border)] flex justify-between items-center text-[10px] font-mono text-[var(--text-muted)] select-none">
-                              <span>{`[ Fig 1.${index} ]`}</span>
-                              <span>{project.title === "Mini-ICU" ? (index === 0 ? "Hardware Assembly" : "Telemetry Dashboard") : "System Architecture Mockup"}</span>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
+                      {tag}
+                    </span>
                   ))}
                 </div>
+              </div>
+
+              {/* External Actions */}
+              <div className="flex items-center gap-3 self-start md:self-center flex-shrink-0">
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 px-4 py-2 border border-[var(--border)] bg-[var(--canvas)] text-xs font-mono font-semibold text-[var(--text-primary)] rounded-md hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-150 shadow-sm"
+                >
+                  <Github className="w-4 h-4" />
+                  <span>Repository</span>
+                </a>
+                {project.demoUrl && (
+                  <a
+                    href={project.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 px-4 py-2 border border-[var(--border)] bg-[var(--canvas)] text-xs font-mono font-semibold text-[var(--text-primary)] rounded-md hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-150 shadow-sm"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    <span>Live Demo</span>
+                  </a>
+                )}
+                {details.paperUrl && (
+                  <a
+                    href={details.paperUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 px-4 py-2 border border-[var(--border)] bg-[var(--canvas)] text-xs font-mono font-semibold text-[var(--text-primary)] rounded-md hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-150 shadow-sm"
+                  >
+                    <FileText className="w-4 h-4" />
+                    <span>Read Paper</span>
+                  </a>
+                )}
+              </div>
+            </div>
+
+            {/* Recognitions (Awards) - Compact horizontal cards banner */}
+            {details.recognitions && details.recognitions.length > 0 && (
+              <div className="space-y-3">
+                <h4 className="font-mono text-[10px] font-bold tracking-widest text-neutral-500 uppercase flex items-center gap-1.5">
+                  <Trophy className="w-3.5 h-3.5 text-amber-500" />
+                  <span>{"// RECOGNITION"}</span>
+                </h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-left">
+                  {details.recognitions.map((award, i) => {
+                    const [badge, rest] = award.includes(" — ") ? award.split(" — ") : [null, award];
+                    return (
+                      <div 
+                        key={i} 
+                        className="bg-[var(--canvas)] border border-[var(--border)] rounded-lg p-4 flex gap-3 items-start shadow-sm"
+                      >
+                        {badge && (
+                          <span className="font-mono text-[9px] font-extrabold uppercase bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 px-1.5 py-0.5 rounded flex-shrink-0">
+                            {badge}
+                          </span>
+                        )}
+                        <span className="text-xs font-medium text-[var(--text-primary)]/90 leading-relaxed">
+                          {rest}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* Project Highlights (Grid Layout) */}
+            <div className="space-y-4">
+              <h4 className="font-mono text-[10px] font-bold tracking-widest text-neutral-500 uppercase">
+                {"// ENGINEERING_HIGHLIGHTS"}
+              </h4>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+                {details.highlights.map((highlight, index) => (
+                  <div 
+                    key={index} 
+                    className="bg-[var(--canvas)] border border-[var(--border)] rounded-xl p-5 flex flex-col justify-between shadow-sm space-y-4 text-left"
+                  >
+                    {/* Highlight Text */}
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono text-xs font-bold text-neutral-400 select-none">
+                          {`0${index + 1} //`}
+                        </span>
+                      </div>
+                      <p className="text-xs text-[var(--text-primary)]/90 leading-relaxed font-medium">
+                        {highlight.bullet}
+                      </p>
+                    </div>
+
+                    {/* Associated Figure Image */}
+                    {highlight.image && (
+                      <div className="border border-[var(--border)] rounded-lg bg-[var(--card)] overflow-hidden p-1 shadow-sm mt-auto">
+                        <div className="relative aspect-[16/9] w-full">
+                          <Image
+                            src={highlight.image}
+                            alt={`Figure ${index + 1} for ${project.title}`}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            className="object-cover rounded-md"
+                          />
+                        </div>
+                        <div className="bg-[var(--card)] px-3 py-2 border-t border-[var(--border)] flex justify-between items-center text-[10px] font-mono text-[var(--text-muted)] select-none">
+                          <span>{`[ Fig 1.${index} ]`}</span>
+                          <span>
+                            {project.title === "Mini-ICU"
+                              ? (index === 0 
+                                  ? "Hardware Assembly" 
+                                  : index === 1 
+                                    ? "Open Chassis Layout" 
+                                    : "Telemetry Dashboard")
+                              : project.title === "BuildX"
+                                ? (index === 0
+                                    ? "Backend Architecture"
+                                    : index === 1
+                                      ? "Real-Time Sync Engine"
+                                      : "Operational Console")
+                                : "System Architecture"}
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
           </div>

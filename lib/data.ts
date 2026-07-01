@@ -38,11 +38,11 @@ export const PROJECTS: Project[] = [
     githubUrl: "https://github.com/7Biscuits/Mini-ICU/",
   },
   {
-    title: "Eye-Blink",
-    category: "Computer Vision",
-    tagline: "Real-time driver drowsiness detection with Raspberry Pi + ABS integration",
-    stack: ["Python", "OpenCV", "Raspberry Pi", "Hardware Integration"],
-    githubUrl: "https://github.com/7Biscuits/eye-blink",
+    title: "BuildX",
+    category: "EVENT MANAGEMENT & SYSTEM INFRASTRUCTURE",
+    tagline: "A high-throughput event management platform featuring multi-role workflows and a real-time synchronized quiz engine.",
+    stack: ["4-Layer Architecture", "Real-Time Sync", "Zero Credential Exposure", "Node.js", "Socket.io", "PostgreSQL", "TypeScript"],
+    githubUrl: "https://github.com/7Biscuits/BuildX",
   },
   {
     title: "Kala-Kriti",
@@ -197,6 +197,7 @@ export interface ProjectHighlight {
 export interface ProjectDetail {
   highlights: ProjectHighlight[];
   recognitions?: string[];
+  paperUrl?: string;
 }
 
 export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
@@ -205,6 +206,10 @@ export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
       {
         bullet: "Engineered a low-cost automated ventilation system using an ARM-controlled high-torque DC motor and an oscillating compression mechanism to automate variable Ambu bag compression, targeting a production cost below $50.",
         image: "/mini-icu.jpg",
+      },
+      {
+        bullet: "Designed a compact, modular open-chassis enclosure to securely house the ARM controller, high-torque motor, and custom power distribution circuitry while maintaining passive cooling channels.",
+        image: "/mini-icu-open.png",
       },
       {
         bullet: "Built an IoT patient monitoring pipeline integrating Pulse Ox, ECG, and EMG sensors, streaming sub-second telemetry to an Express + MongoDB backend consumed by a cross-platform Expo mobile application.",
@@ -216,17 +221,25 @@ export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
       "Innovate4Impact — India Didac & La Trobe University (2024)",
       "Runner-up — MoE Innovation Cell IIC Regional Meet 2023",
     ],
+    paperUrl: "https://www.irjet.net/archives/V11/i6/IRJET-V11I6107.pdf",
   },
-  "Eye-Blink": {
+  "BuildX": {
     highlights: [
       {
-        bullet: "Developed a real-time driver drowsiness detection algorithm using OpenCV Haar cascades and Eye Aspect Ratio (EAR) calculations to monitor blink patterns.",
-        image: "/placeholder.jpg",
+        bullet: "Architected a four-layer backend infrastructure powering comprehensive event registration workflows, implementing complete lifecycle data management, role-based access control, secure credential verification, and verified asset uploads mapped to a relational database model.",
+        image: "/buildx-db.png",
       },
       {
-        bullet: "Integrated ABS braking system control logic via GPIO relays, simulating microsecond-level emergency brake trigger latency upon drowsiness detection.",
-        image: "/placeholder.jpg",
+        bullet: "Engineered a real-time quiz system using Socket.IO, enabling isolated quiz sessions, live participant synchronization, waiting rooms, automatic leaderboard generation, and concurrent quiz execution.",
+        image: "/buildx-quiz.png",
       },
+      {
+        bullet: "Developed a responsive React.js and TailwindCSS frontend, building a custom client-side SDK to handle seamless, two-way request/response communication with backend endpoints, along with a Socket.io client to enable low-latency, two-way communication for real-time quiz participation.",
+        image: "/buildx-landing.png",
+      },
+    ],
+    recognitions: [
+      "Deployment-ready platform built to scale operational infrastructure for massive user cohorts."
     ],
   },
   "Kala-Kriti": {

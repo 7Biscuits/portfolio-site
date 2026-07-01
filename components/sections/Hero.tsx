@@ -36,7 +36,7 @@ export default function Hero() {
                 </span>
               </div>
               <p className="font-mono text-sm tracking-wide text-[var(--text-muted)] max-w-2xl leading-relaxed">
-                Specializing in building hardware-software integrations, applied machine learning systems, and high-performance backend servers.
+                Specializing in building hardware-software integrations, applied machine learning systems, and high-performance backend systems.
               </p>
             </div>
 
